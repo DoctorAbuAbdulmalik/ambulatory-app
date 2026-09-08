@@ -1,0 +1,174 @@
+<main class="page-shell">
+  <section class="auth-card" aria-label="صفحة تسجيل الدخول">
+    <header class="topbar">
+      <h1>تسجيل الدخول - الحالة الافتراضية</h1>
+    </header>
+
+    <div class="auth-wrapper">
+      <div class="auth-layout">
+        <aside class="login-panel">
+          <div class="login-content">
+            <!-- Mobile logo -->
+            <img class="mobile-logo" src="/icons/01-logo-full-transparent.svg" alt="الشعار" />
+            <h2>تسجيل الدخول</h2>
+            <p class="subtitle">أدخل الرقم الوطني المسجل في ملفك الطبي</p>
+
+            <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+              <label for="nationalId">الرقم الوطني</label>
+              <input
+                class="form-control"
+                id="nationalId"
+                type="text"
+                formControlName="nationalId"
+                inputmode="numeric"
+                maxlength="11"
+                pattern="[0-9]{11}"
+                (input)="normalizeNationalId($event)"
+                autocomplete="username"
+                [attr.aria-invalid]="
+                  form.controls.nationalId.invalid && form.controls.nationalId.touched
+                "
+                aria-describedby="national-id-error"
+              />
+
+              @if (form.controls.nationalId.invalid && form.controls.nationalId.touched) {
+                <div class="error" role="alert">
+                  @if (form.controls.nationalId.hasError('required')) {
+                    <span>يرجى إدخال الرقم الوطني</span>
+                  }
+
+                  @if (form.controls.nationalId.hasError('pattern')) {
+                    <span>يجب أن يتكون الرقم الوطني من 11 رقماً فقط</span>
+                  }
+                </div>
+              }
+
+              <label for="password">كلمة المرور</label>
+
+              <div class="password-field">
+                <input
+                  class="form-control"
+                  id="password"
+                  formControlName="password"
+                  [type]="isPasswordVisible() ? 'text' : 'password'"
+                  autocomplete="current-password"
+                  [attr.aria-invalid]="
+                    form.controls.password.invalid && form.controls.password.touched
+                  "
+                  aria-describedby="password-error"
+                />
+
+                <button
+                  class="show-password"
+                  type="button"
+                  [attr.aria-pressed]="isPasswordVisible()"
+                  [attr.aria-label]="
+                    isPasswordVisible() ? 'إخفاء كلمة المرور' : 'إظهار كلمة المرور'
+                  "
+                  (click)="togglePasswordVisibility()"
+                >
+                  @if (!isPasswordVisible()) {
+                    <svg class="eye-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path
+                        d="M2.5 12S5.8 5.5 12 5.5 21.5 12 21.5 12 18.2 18.5 12 18.5 2.5 12 2.5 12Z"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <circle cx="12" cy="12" r="2.8" stroke="currentColor" stroke-width="1.8" />
+                    </svg>
+                  } @else {
+                    <svg class="eye-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path
+                        d="M3 3 21 21"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                      />
+                      <path
+                        d="M10.6 5.7A10.2 10.2 0 0 1 12 5.5c6.2 0 9.5 6.5 9.5 6.5a17 17 0 0 1-3.1 4.1M6.2 6.2A17.2 17.2 0 0 0 2.5 12S5.8 18.5 12 18.5c1.2 0 2.3-.2 3.3-.7"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M9.9 9.9a3 3 0 0 0 4.2 4.2"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                      />
+                    </svg>
+                  }
+                </button>
+              </div>
+
+              @if (form.controls.password.invalid && form.controls.password.touched) {
+                <div id="password-error" class="error" role="alert">
+                  <span>يرجى إدخال كلمة المرور</span>
+                </div>
+              }
+
+              <div class="form-options">
+                <label class="remember-label" for="remember">
+                  <input id="remember" type="checkbox" formControlName="remember" />
+                  <span>تذكرني</span>
+                </label>
+
+                <a href="#">نسيت كلمة المرور؟</a>
+              </div>
+
+              <button
+                class="submit-button"
+                type="submit"
+                [disabled]="form.invalid || isSubmitting()"
+              >
+                دخول
+              </button>
+
+              <div class="separator">
+                <span>أو</span>
+              </div>
+
+              <button class="register-button" type="button" (click)="onRegisterClick()">
+                إنشاء حساب جديد
+              </button>
+            </form>
+          </div>
+        </aside>
+
+        <section class="welcome-panel">
+          <div class="welcome-content">
+            <img class="hero-logo" src="/icons/01-logo-full-transparent.svg" alt="الشعار" />
+
+            <div class="skeleton skeleton-title"></div>
+            <div class="skeleton skeleton-subtitle"></div>
+
+            <div class="welcome-lines">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+
+            <p>لحجز موعدك وطلب وصفاتك الطبية وإدارة ملفك الصحي من مكان واحد</p>
+          </div>
+        </section>
+      </div>
+
+      <footer class="footer">
+        <div class="footer-right">
+          <img class="footer-logo" src="/icons/01-logo-full-transparent.svg" alt="الشعار" />
+
+          <nav>
+            <a href="#">الدعم الفني</a>
+            <a href="#">سياسة الخصوصية</a>
+          </nav>
+        </div>
+
+        <span class="footer-language">اللغة العربية</span>
+      </footer>
+    </div>
+  </section>
+</main>
