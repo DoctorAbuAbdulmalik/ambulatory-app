@@ -1,0 +1,479 @@
+:host {
+  font-family: 'Cairo', Tahoma, Arial, sans-serif;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  background: #fdf8f2;
+}
+.registration {
+  max-width: 1480px;
+  border: 1px solid #cfcfcf;
+  border-radius: 20px;
+  padding: 12px 30px 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  background-color: #f9f9f9;
+}
+.registration__header {
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px 6px;
+}
+.registration__header h1 {
+  margin: 0;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: right;
+  color: #303030;
+}
+.registration__header h1 span {
+  font-weight: 600;
+}
+.registration__cards {
+  // display: grid;
+  // grid-template-columns: 1fr 1fr;
+  // gap: 26px;
+
+  display: flex;
+  gap: 10px;
+}
+.step-card {
+  direction: rtl;
+  min-height: 548px;
+  background: #ffffff;
+  border: 1px solid #d7d7d7;
+  border-radius: 5px;
+  padding: 20px 42px 30px;
+  display: flex;
+  justify-content: center;
+}
+.step-card__content {
+  width: 100%;
+  max-width: 490px;
+  display: flex;
+  flex-direction: column;
+}
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: start;
+  gap: 16px;
+  width: 100%;
+}
+.logo-line {
+  width: 200px;
+  height: 10px;
+  background: #e2e2e4;
+  border-radius: 4px;
+}
+.logo {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+}
+.logo img {
+  display: block;
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+}
+
+.step-card__heading {
+  text-align: center;
+  margin-bottom: 26px;
+}
+.step-card__heading h2 {
+  font-size: 18px;
+  line-height: 1.6;
+  font-weight: 700;
+  color: #3e3e3e;
+  margin-bottom: 4px;
+  text-align: right;
+}
+.step-card__heading p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #a1a1a1;
+  text-align: right;
+}
+.step-card__heading p span {
+  direction: ltr;
+  display: inline-block;
+}
+.otp-wrapper {
+  width: 100%;
+  margin-top: 4px;
+  margin-bottom: 30px;
+}
+.otp-inputs {
+  display: flex;
+  direction: ltr;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+}
+.otp-inputs input {
+  width: 48px;
+  height: 50px;
+  border: 1px solid #d4d4d4;
+  border-radius: 5px;
+  background: #ffffff;
+  outline: none;
+  text-align: center;
+  font-size: 21px;
+  font-weight: 600;
+  color: #555;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.otp-inputs input:focus {
+  border-color: #c7b485;
+  box-shadow: 0 0 0 2px rgba(199, 180, 133, 0.15);
+}
+/* Первые заполненные поля */
+.otp-inputs input:nth-child(1),
+.otp-inputs input:nth-child(2),
+.otp-inputs input:nth-child(3) {
+  background: #f8f2e5;
+  border-color: #c8b98e;
+}
+.otp-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  margin-top: 18px;
+  font-size: 13px;
+}
+.timer {
+  direction: ltr;
+  color: #8f8f8f;
+}
+.resend-button {
+  border: 0;
+  background: transparent;
+  color: #929292;
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+.resend-button:hover {
+  color: #555;
+}
+.button {
+  width: 100%;
+  height: 50px;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: 15px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.1s ease;
+}
+.button:active {
+  transform: scale(0.99);
+}
+.button--primary {
+  border: 1px solid #c6b587;
+  background: #f7f0e1;
+  color: #6d624b;
+}
+.button--primary:hover {
+  background: #eee4cf;
+}
+.button--secondary {
+  margin-top: 22px;
+  border: 1px solid #d7d7d7;
+  background: #ffffff;
+  color: #9a9a9a;
+}
+.button--secondary:hover {
+  background: #fafafa;
+  color: #777;
+}
+.password-form {
+  width: 100%;
+}
+.form-field {
+  width: 100%;
+  margin-bottom: 27px;
+}
+.form-field label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #898989;
+  text-align: right;
+}
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+.input-wrapper input {
+  width: 100%;
+  height: 47px;
+  padding: 0 46px 0 14px;
+  border: 1px solid #d4d4d4;
+  border-radius: 4px;
+  background: #ffffff;
+  outline: none;
+  font-family: inherit;
+  font-size: 15px;
+  color: #333;
+  direction: rtl;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.input-wrapper input:focus {
+  border-color: #c7b485;
+  box-shadow: 0 0 0 2px rgba(199, 180, 133, 0.15);
+}
+.show-password {
+  position: absolute;
+  top: 14px;
+  left: 9px;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  color: #8f8a84;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.show-password:hover {
+  color: #6a6457;
+}
+.show-password:focus-visible {
+  outline: 2px solid #b8aa83;
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+.eye-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.password-toggle {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 27px;
+  height: 27px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.password-toggle span {
+  position: relative;
+  display: block;
+  width: 19px;
+  height: 12px;
+  border: 1.5px solid #aaa;
+  border-radius: 70% 20% 70% 20%;
+  transform: rotate(45deg);
+}
+.password-toggle span::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  border: 1px solid #aaa;
+  border-radius: 50%;
+}
+
+.password-rules {
+  margin-top: -8px;
+  margin-bottom: 25px;
+  text-align: right;
+}
+.password-rules p {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #929292;
+}
+
+.step-card--phone .step-card__content {
+  padding-top: 0;
+}
+.step-card--password .step-card__content {
+  padding-top: 0;
+}
+/* ==========================================
+   TABLET
+   ========================================== */
+@media (max-width: 1000px) {
+  .page {
+    padding: 20px;
+  }
+  .registration {
+    padding: 10px 12px 24px;
+  }
+  .registration__cards {
+    gap: 16px;
+  }
+  .step-card {
+    padding: 30px 25px;
+  }
+  .otp-inputs {
+    gap: 7px;
+  }
+  .otp-inputs input {
+    width: 50px;
+    height: 50px;
+  }
+}
+/* ==========================================
+   MOBILE
+   ========================================== */
+@media (max-width: 700px) {
+  .page {
+    min-height: 100vh;
+    padding: 12px;
+  }
+  .registration {
+    width: 100%;
+    border-radius: 14px;
+    padding: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+
+  .registration__header {
+    min-height: 42px;
+    padding: 0 5px 12px;
+  }
+  .registration__header h1 {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .registration__cards {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 14px;
+  }
+  .step-card {
+    width: 100%;
+    min-height: auto;
+    padding: 26px 18px 28px;
+    border-radius: 6px;
+  }
+  .step-card__content {
+    width: 100%;
+    max-width: none;
+  }
+
+  .logo {
+    height: 58px;
+    margin-bottom: 5px;
+  }
+  .logo img {
+    width: 48px;
+    height: 48px;
+  }
+
+  .step-card__heading {
+    margin-bottom: 24px;
+  }
+  .step-card__heading h2 {
+    font-size: 17px;
+  }
+  .step-card__heading p {
+    font-size: 13px;
+  }
+
+  .otp-wrapper {
+    margin-bottom: 25px;
+  }
+  .otp-inputs {
+    width: 100%;
+    gap: 6px;
+    justify-content: space-between;
+  }
+  .otp-inputs input {
+    flex: 1;
+    width: auto;
+    min-width: 0;
+    height: 52px;
+    font-size: 19px;
+  }
+  .otp-footer {
+    margin-top: 14px;
+    font-size: 12px;
+  }
+  .resend-button {
+    font-size: 12px;
+  }
+
+  .form-field {
+    margin-bottom: 22px;
+  }
+  .form-field label {
+    font-size: 13px;
+    margin-bottom: 7px;
+  }
+  .input-wrapper input {
+    height: 52px;
+    font-size: 15px;
+  }
+
+  .button {
+    width: 100%;
+    height: 52px;
+    font-size: 15px;
+  }
+  .button--secondary {
+    margin-top: 12px;
+  }
+
+  .password-rules {
+    margin-top: -3px;
+    margin-bottom: 22px;
+  }
+  .password-rules p {
+    font-size: 12px;
+  }
+}
+/* ==========================================
+   VERY SMALL MOBILE
+   ========================================== */
+@media (max-width: 380px) {
+  .page {
+    padding: 8px;
+  }
+  .registration {
+    padding: 8px;
+  }
+  .step-card {
+    padding: 22px 14px 24px;
+  }
+  .otp-inputs {
+    gap: 4px;
+  }
+  .otp-inputs input {
+    height: 48px;
+    font-size: 17px;
+  }
+}

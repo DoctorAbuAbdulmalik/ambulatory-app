@@ -1,0 +1,28 @@
+@if (currentStep() === 1) {
+
+  <app-registration-step-one
+    [form]="registrationForm.controls.step1"
+    (next)="nextStep()"
+  />
+
+}
+
+@if (currentStep() === 2) {
+
+  <app-registration-step-two
+    [form]="registrationForm.controls.step2"
+    (next)="nextStep()"
+    (back)="previousStep()"
+  />
+
+}
+
+@if (currentStep() === 3) {
+
+  <app-registration-step-three
+    [form]="registrationForm.controls.step3"
+    (back)="previousStep()"
+    (submitForm)="submitRegistration()"
+  />
+
+}

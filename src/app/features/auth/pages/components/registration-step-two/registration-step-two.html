@@ -1,11 +1,169 @@
-    <div>
-      <h2>الخطوة 2</h2>
+<main class="page">
+  <section class="registration">
+    <header class="registration__header">
+      <h1>إنشاء حساب — الخطوتان 2 و 3</h1>
+    </header>
 
-      <button type="button" (click)="back.emit()">
-        السابق
-      </button>
+    <div class="registration__cards">
+      <!-- Шаг 2: OTP -->
+      <section class="step-card step-card--phone">
+        <div class="step-card__content">
+          <div class="logo-wrapper">
+            <div class="logo-line"></div>
+            <div class="logo">
+              <img src="/icons/01-logo-full-transparent.svg" alt="Logo" />
+            </div>
+          </div>
 
-      <button type="button" (click)="next.emit()">
-        متابعة
-      </button>
+          <div class="step-card__heading">
+            <h2>التحقق من رقم الجوال</h2>
+            <p>
+              الخطوة 2 من 3 — أدخل الرمز المرسل إلى
+              <span>45...</span>
+            </p>
+          </div>
+
+          <!-- OTP привязываем к полю confirmationCode -->
+          <div class="otp-wrapper">
+            <div class="otp-inputs">
+              @for (digit of [0,1,2,3,4,5]; track digit) {
+                <input
+                  type="text"
+                  maxlength="1"
+                  inputmode="numeric"
+                  [formControlName]="'confirmationCodeDigit_' + digit"
+                />
+              }
+            </div>
+
+            <div class="otp-footer">
+              <span class="timer">{{timerDisplay()}}</span>
+              <button type="button" class="resend-button">
+                إعادة إرسال الرمز
+              </button>
+            </div>
+          </div>
+
+          <!-- Кнопка “تأكيد” вызывает переход на следующий шаг -->
+          <button type="button" class="button button--primary" (click)="next.emit()">
+            تأكيد
+          </button>
+
+          <button type="button" class="button button--secondary" (click)="back.emit()">
+            تغيير رقم الجوال
+          </button>
+        </div>
+      </section>
+
+      <!-- Шаг 3: пароль -->
+      <section class="step-card step-card--password">
+        <div class="step-card__content">
+          <div class="logo-wrapper">
+            <div class="logo-line"></div>
+            <div class="logo">
+              <img src="/icons/01-logo-full-transparent.svg" alt="Logo" />
+            </div>
+          </div>
+
+          <div class="step-card__heading">
+            <h2>كلمة المرور</h2>
+            <p>الخطوة 3 من 3</p>
+          </div>
+
+          <form class="password-form" [formGroup]="form()" (ngSubmit)="onNext()">
+            <!-- Password -->
+            <div class="form-field">
+              <label for="password">كلمة المرور</label>
+              <div class="input-wrapper">
+                <input
+                  id="password"
+                  type="password"
+                  formControlName="password"
+                  placeholder=""
+                />
+                <button
+                  class="show-password"
+                  type="button"
+                  aria-label="إظهار كلمة المرور"
+                  aria-pressed="false"
+                >
+                  <svg
+                    class="eye-icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M2.5 12S5.8 5.5 12 5.5 21.5 12 21.5 12 18.2 18.5 12 18.5 2.5 12 2.5 12Z"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="2.8"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Confirm password -->
+            <div class="form-field">
+              <label for="confirm-password">تأكيد كلمة المرور</label>
+              <div class="input-wrapper">
+                <input
+                  id="confirm-password"
+                  type="password"
+                  formControlName="confirmPassword"
+                  placeholder=""
+                />
+                <button
+                  class="show-password"
+                  type="button"
+                  aria-label="إظهار كلمة المرور"
+                  aria-pressed="false"
+                >
+                  <svg
+                    class="eye-icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M2.5 12S5.8 5.5 12 5.5 21.5 12 21.5 12 18.2 18.5 12 18.5 2.5 12 2.5 12Z"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="2.8"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="password-rules">
+              <p>8 أحرف على الأقل</p>
+              <p>حرف كبير وحرف صغير واحد على الأقل</p>
+            </div>
+
+            <button type="submit" class="button button--primary">
+              إنشاء الحساب
+            </button>
+          </form>
+        </div>
+      </section>
     </div>
+  </section>
+</main>
