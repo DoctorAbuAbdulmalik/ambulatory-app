@@ -4,13 +4,25 @@
     <img src="/icons/01-logo-full-transparent.svg" alt="الشعار" />
   </a>
 
-  <nav class="header__nav">
-    <a href="#" class="nav-link">الرءيسية</a>
-    <a href="#" class="nav-link">الخدمات</a>
-    <a href="#" class="nav-link">المستشفيات</a>
-    <a href="#" class="nav-link">العيادات</a>
-    <a href="#" class="nav-link">الاخبار</a>
-    <a href="#" class="nav-link">تسجيل الدخول</a>
-    <a href="#" class="nav-link">احجز موعدك</a>
+  <button
+    type="button"
+    class="header__burger"
+    (click)="toggleMenu()"
+    [class.header__burger--open]="isMenuOpen()"
+    [attr.aria-expanded]="isMenuOpen()"
+    aria-controls="header-nav"
+    aria-label="فتح القائمة"
+  >
+    <span></span>
+  </button>
+
+  <nav id="header-nav" class="header__nav" [class.header__nav--open]="isMenuOpen()">
+    <a href="#" class="nav-link" (click)="closeMenu()">الرءيسية</a>
+    <a href="#" class="nav-link" (click)="closeMenu()">الخدمات</a>
+    <a href="#" class="nav-link" (click)="closeMenu()">المستشفيات</a>
+    <a href="#" class="nav-link" (click)="closeMenu()">العيادات</a>
+    <a href="#" class="nav-link" (click)="closeMenu()">الاخبار</a>
+    <a href="#" class="nav-link" (click)="closeMenu()">تسجيل الدخول</a>
+    <a href="#" class="nav-link" (click)="closeMenu()">احجز موعدك</a>
   </nav>
 </header>

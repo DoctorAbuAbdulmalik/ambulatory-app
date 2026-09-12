@@ -16,6 +16,10 @@
   max-width: 1300px;
   margin: 0 auto;
   padding: 40px 0 60px;
+
+  @media (max-width: 900px) {
+    padding: 0;
+  }
 }
 
 .clinics {
@@ -35,6 +39,11 @@
     justify-content: flex-start;
     gap: 10px;
     margin-bottom: 24px;
+
+    @media (max-width: 900px) {
+      justify-content: space-between;
+      gap: 0;
+    }
   }
 
   &__grid {
@@ -63,7 +72,10 @@
   background-color: #fff;
   color: #6b7280;
   cursor: pointer;
-  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
 
   &:hover {
     border-color: var(--tab-active-border);
@@ -79,6 +91,10 @@
     border-color: var(--tab-active-border);
     color: var(--tab-active-color);
   }
+
+  @media (max-width: 900px) {
+    padding: 5px 12px;
+  }
 }
 
 .card {
@@ -89,7 +105,9 @@
   border: 1px solid #e5e7eb;
   border-radius: 14px;
   background-color: #fff;
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 
   &:hover {
     box-shadow: 0 8px 20px rgba(13, 110, 94, 0.08);
@@ -126,7 +144,9 @@
     border: 1px solid #d1d5db;
     cursor: pointer;
     position: relative;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease;
 
     &:hover {
       border-color: var(--tab-active-border);

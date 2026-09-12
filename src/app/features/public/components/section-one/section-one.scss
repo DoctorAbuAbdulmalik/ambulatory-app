@@ -13,6 +13,10 @@
   max-width: 1300px;
   margin: 0 auto;
   padding: 0 0 60px;
+
+  @media (max-width: 900px) {
+    padding: 0;
+  }
 }
 
 /* --- Hero Section --- */
@@ -27,6 +31,7 @@
     flex-direction: column-reverse;
     text-align: center;
     gap: 30px;
+    padding: 0;
   }
 
   &__content {
@@ -92,7 +97,10 @@
   border-radius: 10px;
   cursor: pointer;
   white-space: nowrap;
-  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.1s ease;
 
   &--primary {
     background-color: var(--primary-color);
@@ -157,7 +165,9 @@
   border: 1px solid #e5e7eb;
   border-radius: 14px;
   background-color: #fff;
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 
   &:hover {
     box-shadow: 0 8px 20px rgba(13, 110, 94, 0.08);
@@ -174,7 +184,9 @@
     border: 1px solid rgba(13, 110, 94, 0.2);
     cursor: pointer;
     position: relative;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease;
 
     &:hover {
       border-color: var(--primary-color);
