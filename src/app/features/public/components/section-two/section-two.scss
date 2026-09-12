@@ -1,0 +1,117 @@
+:host {
+  display: block;
+  font-family: 'Cairo', Tahoma, Arial, sans-serif;
+  direction: rtl;
+  text-align: right;
+  color: #1f2937;
+  background-color: #f3f4f6;
+  --primary-color: #0d6e5e;
+  --primary-hover: #0a5548;
+  --primary-light: #e6f1ef;
+}
+
+.wrapper {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+.hospitals {
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  &__view-all {
+    font-size: 14px;
+    color: #6b7280;
+    text-decoration: none;
+
+    &:hover {
+      color: var(--primary-color);
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+
+    @media (max-width: 992px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 560px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  background-color: #fff;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 8px 20px rgba(13, 110, 94, 0.08);
+    transform: translateY(-3px);
+  }
+
+  &__image {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: #111827;
+  }
+
+  &__meta {
+    margin: 0;
+    font-size: 13px;
+    color: #9ca3af;
+  }
+
+  &__button {
+    margin-top: auto;
+    min-height: 40px;
+    padding: 8px 20px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 20px;
+    border: 1px solid #d1d5db;
+    background-color: #fff;
+    color: #374151;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease;
+
+    &:hover {
+      border-color: var(--primary-color);
+      color: var(--primary-color);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--primary-color);
+      outline-offset: 3px;
+    }
+  }
+}

@@ -1,0 +1,40 @@
+<div class="wrapper">
+  <section class="clinics">
+    <div class="clinics__header">
+      <h2 class="clinics__title">العيادات</h2>
+    </div>
+
+    <div class="clinics__tabs">
+      @for (city of cities; track city) {
+        <button
+          type="button"
+          class="tab"
+          [class.tab--active]="city === selectedCity()"
+          (click)="selectCity(city)"
+        >
+          {{ city }}
+        </button>
+      }
+    </div>
+
+    <div class="clinics__grid">
+      @for (clinic of clinics(); track clinic.name) {
+        <article class="card">
+            <input
+            type="checkbox"
+            class="card__icon"
+            [checked]="isClinicSelected(clinic.name)"
+            (change)="toggleClinic(clinic.name)"
+            [attr.aria-label]="clinic.name"
+          />
+          
+          <div class="card__body">
+            <h3 class="card__title">{{ clinic.name }}</h3>
+            <p class="card__status">{{ clinic.status }}</p>
+          </div>
+
+        </article>
+      }
+    </div>
+  </section>
+</div>

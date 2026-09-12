@@ -1,0 +1,78 @@
+<div class="wrapper">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero__content">
+      <h1 class="hero__title">احجز موعدك في عيادات المستشفيات العسكرية إلكترونياً</h1>
+      <p class="hero__subtitle">سجل بياناتك، وثق هويتك مرة واحدة، ثم اختر العيادة والوقت المناسب</p>
+
+      <div class="hero__actions">
+        <button type="button" class="btn btn--primary">ابدأ الحجز</button>
+        <button type="button" class="btn btn--secondary">إنشاء حساب</button>
+      </div>
+    </div>
+
+    <div class="hero__media">
+      <img
+        class="hero__image"
+        src="/images/hospital.jpeg"
+        alt="مستشفى تشرين العسكري"
+        loading="lazy"
+      >
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services">
+    <h2 class="services__title">الخدمات</h2>
+
+    <div class="services__grid">
+      <article class="card">
+        <input
+          type="checkbox"
+          class="card__icon"
+          [checked]="isServiceSelected('حجز المواعيد')"
+          (change)="toggleService('حجز المواعيد')"
+          aria-label="حجز المواعيد"
+        />
+        <h3 class="card__title">حجز المواعيد</h3>
+        <p class="card__description">اختر المستشفى والعيادة والوقت المناسب</p>
+      </article>
+
+      <article class="card">
+        <input
+          type="checkbox"
+          class="card__icon"
+          [checked]="isServiceSelected('استعراض المواعيد')"
+          (change)="toggleService('استعراض المواعيد')"
+          aria-label="استعراض المواعيد"
+        />
+        <h3 class="card__title">استعراض المواعيد</h3>
+        <p class="card__description">متابعة المواعيد السابقة والقادمة وإدارتها</p>
+      </article>
+
+      <article class="card">
+        <input
+          type="checkbox"
+          class="card__icon"
+          [checked]="isServiceSelected('التقارير الطبية')"
+          (change)="toggleService('التقارير الطبية')"
+          aria-label="التقارير الطبية"
+        />
+        <h3 class="card__title">التقارير الطبية</h3>
+        <p class="card__description">الاطلاع على نتائج التحاليل والتقارير الطبية</p>
+      </article>
+
+      <article class="card">
+        <input
+          type="checkbox"
+          class="card__icon"
+          [checked]="isServiceSelected('ملف المريض')"
+          (change)="toggleService('ملف المريض')"
+          aria-label="ملف المريض"
+        />
+        <h3 class="card__title">ملف المريض</h3>
+        <p class="card__description">تحديث البيانات الشخصية والسجل الصحي</p>
+      </article>
+    </div>
+  </section>
+</div>

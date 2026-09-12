@@ -1,0 +1,24 @@
+<div class="wrapper">
+  <section class="hospitals">
+    <div class="hospitals__header">
+      <h2 class="hospitals__title">المستشفيات</h2>
+      <a href="#" class="hospitals__view-all">عرض الكل</a>
+    </div>
+
+    <div class="hospitals__grid">
+      @for (hospital of hospitals; track hospital.name) {
+        <article class="card">
+          <img
+            class="card__image"
+            src="/images/hospital.jpeg"
+            [alt]="hospital.name"
+            loading="lazy"
+          />
+          <h3 class="card__title">{{ hospital.name }}</h3>
+          <p class="card__meta">{{ hospital.clinicsCount }} عيادات</p>
+          <button type="button" class="card__button">العيادات</button>
+        </article>
+      }
+    </div>
+  </section>
+</div>

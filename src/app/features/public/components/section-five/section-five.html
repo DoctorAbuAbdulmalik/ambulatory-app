@@ -1,0 +1,18 @@
+<div class="wrapper">
+  <section class="news">
+    <div class="news__header">
+      <h2 class="news__title">الأخبار</h2>
+      <a href="#" class="news__view-all">جميع الأخبار</a>
+    </div>
+
+    <div class="news__grid">
+      @for (item of news; track item.title) {
+        <article class="card">
+          <span class="card__date">{{ item.date }}</span>
+          <h3 class="card__title">{{ item.title }}</h3>
+          <p class="card__summary">{{ item.summary }}</p>
+        </article>
+      }
+    </div>
+  </section>
+</div>

@@ -1,0 +1,22 @@
+<div class="wrapper">
+  <section class="how-to-book">
+    <h2 class="how-to-book__title">كيف أحجز</h2>
+
+    <div class="how-to-book__steps">
+      @for (step of steps; track step.id) {
+        <label class="step">
+          <input
+            type="radio"
+            name="booking-step"
+            class="step__radio"
+            [value]="step.id"
+            [checked]="step.id === selectedStep()"
+            (change)="selectStep(step.id)"
+          />
+          <span class="step__title">{{ step.title }}</span>
+          <span class="step__description">{{ step.description }}</span>
+        </label>
+      }
+    </div>
+  </section>
+</div>

@@ -1,0 +1,219 @@
+:host {
+  display: block;
+  font-family: 'Cairo', Tahoma, Arial, sans-serif;
+  direction: rtl;
+  text-align: right;
+  color: #1f2937;
+  --primary-color: #0d6e5e;
+  --primary-hover: #0a5548;
+  --primary-light: #e6f1ef;
+}
+
+.wrapper {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 0 60px;
+}
+
+/* --- Hero Section --- */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 40px 0 60px;
+
+  @media (max-width: 900px) {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 30px;
+  }
+
+  &__content {
+    flex: 1;
+    max-width: 600px;
+
+    @media (max-width: 900px) {
+      max-width: 100%;
+    }
+  }
+
+  &__title {
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 800;
+    line-height: 1.35;
+    margin: 0 0 16px;
+    color: #111827;
+  }
+
+  &__subtitle {
+    font-size: clamp(15px, 2vw, 18px);
+    line-height: 1.6;
+    color: #4b5563;
+    margin: 0 0 24px;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    @media (max-width: 900px) {
+      justify-content: center;
+    }
+  }
+
+  &__media {
+    flex: 1;
+    max-width: 500px;
+    width: 100%;
+  }
+
+  &__image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 5 / 3;
+    object-fit: cover;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  }
+}
+
+/* --- Buttons --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 24px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+
+  &--primary {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: 1px solid var(--primary-color);
+
+    &:hover {
+      background-color: var(--primary-hover);
+      border-color: var(--primary-hover);
+    }
+  }
+
+  &--secondary {
+    background-color: #fff;
+    color: var(--primary-color);
+    border: 1.5px solid var(--primary-color);
+
+    &:hover {
+      background-color: var(--primary-light);
+    }
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 3px;
+  }
+}
+
+/* --- Services & Cards --- */
+.services {
+  &__title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+
+  // Вместо flexbox для карточек удобнее CSS Grid
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+
+    @media (max-width: 992px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 560px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px 20px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  background-color: #fff;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 8px 20px rgba(13, 110, 94, 0.08);
+    transform: translateY(-3px);
+  }
+
+  &__icon {
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    margin: 0;
+    border-radius: 8px;
+    background-color: var(--primary-light);
+    border: 1px solid rgba(13, 110, 94, 0.2);
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+
+    &:hover {
+      border-color: var(--primary-color);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--primary-color);
+      outline-offset: 2px;
+    }
+
+    &:checked {
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 10px;
+        height: 16px;
+        border: solid #fff;
+        border-width: 0 2px 2px 0;
+        transform: translate(-50%, -60%) rotate(45deg);
+      }
+    }
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary-color);
+  }
+
+  &__description {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #6b7280;
+  }
+}

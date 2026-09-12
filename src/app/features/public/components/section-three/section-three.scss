@@ -1,0 +1,157 @@
+:host {
+  display: block;
+  font-family: 'Cairo', Tahoma, Arial, sans-serif;
+  direction: rtl;
+  text-align: right;
+  color: #1f2937;
+  --primary-color: #0d6e5e;
+  --primary-hover: #0a5548;
+  --primary-light: #e6f1ef;
+  --tab-active-bg: #f7efdc;
+  --tab-active-border: #d3bd85;
+  --tab-active-color: #3f3220;
+}
+
+.wrapper {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 40px 0 60px;
+}
+
+.clinics {
+  &__header {
+    margin-bottom: 20px;
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  &__tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+
+    @media (max-width: 992px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 560px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.tab {
+  min-height: 40px;
+  padding: 8px 20px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  background-color: #fff;
+  color: #6b7280;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    border-color: var(--tab-active-border);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+  }
+
+  &--active {
+    background-color: var(--tab-active-bg);
+    border-color: var(--tab-active-border);
+    color: var(--tab-active-color);
+  }
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  background-color: #fff;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 8px 20px rgba(13, 110, 94, 0.08);
+    transform: translateY(-3px);
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: #111827;
+  }
+
+  &__status {
+    margin: 0;
+    font-size: 13px;
+    color: #9ca3af;
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    appearance: none;
+    width: 28px;
+    height: 28px;
+    margin: 0;
+    border-radius: 6px;
+    background-color: #f3f4f6;
+    border: 1px solid #d1d5db;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+
+    &:hover {
+      border-color: var(--tab-active-border);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--primary-color);
+      outline-offset: 2px;
+    }
+
+    &:checked {
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 7px;
+        height: 12px;
+        border: solid #fff;
+        border-width: 0 2px 2px 0;
+        transform: translate(-50%, -60%) rotate(45deg);
+      }
+    }
+  }
+}
