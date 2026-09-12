@@ -11,6 +11,10 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'patient',
+    loadChildren: () => import('./features/patient/patient.routes').then((m) => m.PATIENT_ROUTES),
+  },
+  {
     path: '**',
     redirectTo: 'auth/login',
   },

@@ -36,10 +36,6 @@
   font-weight: 600;
 }
 .registration__cards {
-  // display: grid;
-  // grid-template-columns: 1fr 1fr;
-  // gap: 26px;
-
   display: flex;
   gap: 10px;
 }
@@ -52,6 +48,8 @@
   padding: 20px 42px 30px;
   display: flex;
   justify-content: center;
+  flex: 1 1 0;
+  min-width: 0;
 }
 .step-card__content {
   width: 100%;

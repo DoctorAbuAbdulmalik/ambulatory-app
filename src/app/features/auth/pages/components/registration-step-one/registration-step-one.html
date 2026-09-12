@@ -14,7 +14,7 @@
 
             <p class="subtitle">الخطوة 1 من 3 - كما وردت في الوثيقة الرسمية</p>
 
-            <form [formGroup]="form()" (ngSubmit)="onSubmit()" novalidate>
+            <form (submit)="onSubmit($event)" novalidate>
               <div class="form-group">
                 <label for="fullName">
                   الاسم الكامل
@@ -24,14 +24,14 @@
                 <input
                   id="fullName"
                   type="text"
-                  formControlName="fullName"
+                  [formField]="form().fullName"
                   inputmode="text"
                   autocomplete="name"
-                  [class.invalid]="isFieldInvalid('fullName')"
+                  [class.invalid]="isFieldInvalid(form().fullName)"
                 />
 
-                @if (shouldShowError('fullName')) {
-                  <div class="error-message">هذا الحقل مطلوب</div>
+                @if (isFieldInvalid(form().fullName)) {
+                  <div class="error-message">{{ fieldErrorMessage(form().fullName) }}</div>
                 }
               </div>
 
@@ -44,13 +44,13 @@
                 <input
                   id="nationalId"
                   type="text"
-                  formControlName="nationalId"
+                  [formField]="form().nationalId"
                   inputmode="numeric"
-                  [class.invalid]="isFieldInvalid('nationalId')"
+                  [class.invalid]="isFieldInvalid(form().nationalId)"
                 />
 
-                @if (shouldShowError('nationalId')) {
-                  <div class="error-message">هذا الحقل مطلوب</div>
+                @if (isFieldInvalid(form().nationalId)) {
+                  <div class="error-message">{{ fieldErrorMessage(form().nationalId) }}</div>
                 }
               </div>
 
@@ -64,14 +64,14 @@
                   <input
                     id="gender"
                     type="text"
-                    formControlName="gender"
+                    [formField]="form().gender"
                     inputmode="text"
                     placeholder="اختيار"
-                    [class.invalid]="isFieldInvalid('gender')"
+                    [class.invalid]="isFieldInvalid(form().gender)"
                   />
 
-                  @if (shouldShowError('gender')) {
-                    <div class="error-message">هذا الحقل مطلوب</div>
+                  @if (isFieldInvalid(form().gender)) {
+                    <div class="error-message">{{ fieldErrorMessage(form().gender) }}</div>
                   }
                 </div>
 
@@ -84,13 +84,13 @@
                   <input
                     id="birthDate"
                     type="text"
-                    formControlName="birthDate"
+                    [formField]="form().birthDate"
                     inputmode="numeric"
-                    [class.invalid]="isFieldInvalid('birthDate')"
+                    [class.invalid]="isFieldInvalid(form().birthDate)"
                   />
 
-                  @if (shouldShowError('birthDate')) {
-                    <div class="error-message">هذا الحقل مطلوب</div>
+                  @if (isFieldInvalid(form().birthDate)) {
+                    <div class="error-message">{{ fieldErrorMessage(form().birthDate) }}</div>
                   }
                 </div>
               </div>
@@ -105,15 +105,15 @@
                   <input
                     id="phone"
                     type="text"
-                    formControlName="phone"
+                    [formField]="form().phone"
                     inputmode="tel"
                     autocomplete="tel"
-                    [class.invalid]="isFieldInvalid('phone')"
+                    [class.invalid]="isFieldInvalid(form().phone)"
                   />
                 </div>
 
-                @if (shouldShowError('phone')) {
-                  <div class="error-message">هذا الحقل مطلوب</div>
+                @if (isFieldInvalid(form().phone)) {
+                  <div class="error-message">{{ fieldErrorMessage(form().phone) }}</div>
                 }
               </div>
 
@@ -122,15 +122,15 @@
                   <input
                     id="agreement"
                     type="checkbox"
-                    formControlName="agreement"
-                    [class.invalid]="isFieldInvalid('agreement')"
+                    [formField]="form().agreement"
+                    [class.invalid]="isFieldInvalid(form().agreement)"
                   />
 
                   <span> اوافق على شروط الاستخدام وسياسة الخصوصية </span>
                 </label>
 
-                @if (shouldShowError('agreement')) {
-                  <div class="error-message">يجب الموافقة على الشروط</div>
+                @if (isFieldInvalid(form().agreement)) {
+                  <div class="error-message">{{ fieldErrorMessage(form().agreement) }}</div>
                 }
               </div>
 

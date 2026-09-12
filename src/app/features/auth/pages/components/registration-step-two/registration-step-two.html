@@ -26,30 +26,58 @@
           <!-- OTP привязываем к полю confirmationCode -->
           <div class="otp-wrapper">
             <div class="otp-inputs">
-              @for (digit of [0,1,2,3,4,5]; track digit) {
-                <input
-                  type="text"
-                  maxlength="1"
-                  inputmode="numeric"
-                  [formControlName]="'confirmationCodeDigit_' + digit"
-                />
-              }
+              <input
+                type="text"
+                inputmode="numeric"
+                [formField]="form().confirmationCodeDigit_0"
+                [class.invalid]="isFieldInvalid(form().confirmationCodeDigit_0)"
+              />
+              <input
+                type="text"
+                inputmode="numeric"
+                [formField]="form().confirmationCodeDigit_1"
+                [class.invalid]="isFieldInvalid(form().confirmationCodeDigit_1)"
+              />
+              <input
+                type="text"
+                inputmode="numeric"
+                [formField]="form().confirmationCodeDigit_2"
+                [class.invalid]="isFieldInvalid(form().confirmationCodeDigit_2)"
+              />
+              <input
+                type="text"
+                inputmode="numeric"
+                [formField]="form().confirmationCodeDigit_3"
+                [class.invalid]="isFieldInvalid(form().confirmationCodeDigit_3)"
+              />
+              <input
+                type="text"
+                inputmode="numeric"
+                [formField]="form().confirmationCodeDigit_4"
+                [class.invalid]="isFieldInvalid(form().confirmationCodeDigit_4)"
+              />
+              <input
+                type="text"
+                inputmode="numeric"
+                [formField]="form().confirmationCodeDigit_5"
+                [class.invalid]="isFieldInvalid(form().confirmationCodeDigit_5)"
+              />
             </div>
 
             <div class="otp-footer">
               <span class="timer">{{timerDisplay()}}</span>
-              <button type="button" class="resend-button">
+              <button type="button" class="resend-button" (click)="onResendCode()">
                 إعادة إرسال الرمز
               </button>
             </div>
           </div>
 
           <!-- Кнопка “تأكيد” вызывает переход на следующий шаг -->
-          <button type="button" class="button button--primary" (click)="next.emit()">
+          <button type="button" class="button button--primary" (click)="onConfirmCode()">
             تأكيد
           </button>
 
-          <button type="button" class="button button--secondary" (click)="back.emit()">
+          <button type="button" class="button button--secondary" (click)="onBack()">
             تغيير رقم الجوال
           </button>
         </div>
@@ -70,7 +98,7 @@
             <p>الخطوة 3 من 3</p>
           </div>
 
-          <form class="password-form" [formGroup]="form()" (ngSubmit)="onNext()">
+          <form class="password-form" (submit)="onNext($event)">
             <!-- Password -->
             <div class="form-field">
               <label for="password">كلمة المرور</label>
@@ -78,8 +106,9 @@
                 <input
                   id="password"
                   type="password"
-                  formControlName="password"
+                  [formField]="form().password"
                   placeholder=""
+                  [class.invalid]="isFieldInvalid(form().password)"
                 />
                 <button
                   class="show-password"
@@ -110,6 +139,10 @@
                   </svg>
                 </button>
               </div>
+
+              @if (isFieldInvalid(form().password)) {
+                <div class="error-message">{{ fieldErrorMessage(form().password) }}</div>
+              }
             </div>
 
             <!-- Confirm password -->
@@ -119,8 +152,9 @@
                 <input
                   id="confirm-password"
                   type="password"
-                  formControlName="confirmPassword"
+                  [formField]="form().confirmPassword"
                   placeholder=""
+                  [class.invalid]="isFieldInvalid(form().confirmPassword)"
                 />
                 <button
                   class="show-password"
@@ -151,6 +185,10 @@
                   </svg>
                 </button>
               </div>
+
+              @if (isFieldInvalid(form().confirmPassword)) {
+                <div class="error-message">{{ fieldErrorMessage(form().confirmPassword) }}</div>
+              }
             </div>
 
             <div class="password-rules">

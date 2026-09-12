@@ -1,38 +1,34 @@
-import { Component, input, output } from '@angular/core';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Component, EventEmitter, input, Output, output } from '@angular/core';
+import { FieldTree, FormField } from '@angular/forms/signals';
 import { RouterLink } from '@angular/router';
+import { fieldErrorMessage, isFieldInvalid } from '../../../../../shared/forms/field-helpers';
+import { RegistrationStepOneModel } from '../../../models/registration.models';
 
 @Component({
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [FormField, RouterLink],
   selector: 'app-registration-step-one',
   styleUrl: './registration-step-one.scss',
   templateUrl: './registration-step-one.html',
+  standalone: true,
 })
 export class RegistrationStepOne {
-  readonly form = input.required<FormGroup>();
+  form = input.required<FieldTree<RegistrationStepOneModel>>();
 
   readonly next = output<void>();
 
-    // Проверка, был ли поле тронуто и содержит ли ошибку
-  isFieldInvalid(fieldName: string): boolean {
-    const control = this.form().get(fieldName);
-    return control ? control.invalid && control.touched : false;
-  }
+  readonly isFieldInvalid = isFieldInvalid;
+  readonly fieldErrorMessage = fieldErrorMessage;
 
-  // Проверка, нужно ли показывать сообщение об ошибке
-  shouldShowError(fieldName: string): boolean {
-    const control = this.form().get(fieldName);
-    return control ? control.invalid && control.touched : false;
-  }
-
-  // Проверка, заполнена ли форма полностью и валидна
   isFormValid(): boolean {
-    return this.form().valid;
+    return this.form()().valid();
   }
 
-  onSubmit(): void {
-    if (this.form().invalid) {
-      this.form().markAllAsTouched();
+  onSubmit(event: Event): void {
+    event.preventDefault();
+
+    const state = this.form()();
+    if (state.invalid()) {
+      state.markAsTouched();
       return;
     }
 

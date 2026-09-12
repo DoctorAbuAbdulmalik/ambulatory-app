@@ -13,33 +13,23 @@
             <h2>تسجيل الدخول</h2>
             <p class="subtitle">أدخل الرقم الوطني المسجل في ملفك الطبي</p>
 
-            <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+            <form (submit)="onSubmit($event)" novalidate>
               <label for="nationalId">الرقم الوطني</label>
               <input
                 class="form-control"
                 id="nationalId"
                 type="text"
-                formControlName="nationalId"
+                [formField]="loginForm.nationalId"
                 inputmode="numeric"
-                maxlength="11"
-                pattern="[0-9]{11}"
                 (input)="normalizeNationalId($event)"
                 autocomplete="username"
-                [attr.aria-invalid]="
-                  form.controls.nationalId.invalid && form.controls.nationalId.touched
-                "
+                [attr.aria-invalid]="isFieldInvalid(loginForm.nationalId)"
                 aria-describedby="national-id-error"
               />
 
-              @if (form.controls.nationalId.invalid && form.controls.nationalId.touched) {
+              @if (isFieldInvalid(loginForm.nationalId)) {
                 <div class="error" role="alert">
-                  @if (form.controls.nationalId.hasError('required')) {
-                    <span>يرجى إدخال الرقم الوطني</span>
-                  }
-
-                  @if (form.controls.nationalId.hasError('pattern')) {
-                    <span>يجب أن يتكون الرقم الوطني من 11 رقماً فقط</span>
-                  }
+                  <span>{{ fieldErrorMessage(loginForm.nationalId) }}</span>
                 </div>
               }
 
@@ -49,12 +39,10 @@
                 <input
                   class="form-control"
                   id="password"
-                  formControlName="password"
+                  [formField]="loginForm.password"
                   [type]="isPasswordVisible() ? 'text' : 'password'"
                   autocomplete="current-password"
-                  [attr.aria-invalid]="
-                    form.controls.password.invalid && form.controls.password.touched
-                  "
+                  [attr.aria-invalid]="isFieldInvalid(loginForm.password)"
                   aria-describedby="password-error"
                 />
 
@@ -104,15 +92,15 @@
                 </button>
               </div>
 
-              @if (form.controls.password.invalid && form.controls.password.touched) {
+              @if (isFieldInvalid(loginForm.password)) {
                 <div id="password-error" class="error" role="alert">
-                  <span>يرجى إدخال كلمة المرور</span>
+                  <span>{{ fieldErrorMessage(loginForm.password) }}</span>
                 </div>
               }
 
               <div class="form-options">
                 <label class="remember-label" for="remember">
-                  <input id="remember" type="checkbox" formControlName="remember" />
+                  <input id="remember" type="checkbox" [formField]="loginForm.remember" />
                   <span>تذكرني</span>
                 </label>
 
@@ -122,7 +110,8 @@
               <button
                 class="submit-button"
                 type="submit"
-                [disabled]="form.invalid || isSubmitting()"
+                [disabled]="loginForm().invalid() || isSubmitting()"
+                (click)="onGoToAccount()"
               >
                 دخول
               </button>

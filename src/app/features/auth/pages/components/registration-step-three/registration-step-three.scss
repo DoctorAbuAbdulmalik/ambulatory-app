@@ -1,0 +1,376 @@
+:host {
+  font-family: 'Cairo', Tahoma, Arial, sans-serif;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  background: #fdf8f2;
+}
+
+.registration {
+  width: 100%;
+  max-width: 920px;
+  border: 1px solid #cfcfcf;
+  border-radius: 20px;
+  padding: 12px 30px 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  background-color: #f9f9f9;
+}
+
+.registration__header {
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px 6px;
+}
+
+.registration__header h1 {
+  margin: 0;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: right;
+  color: #303030;
+}
+
+.registration__cards {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 10px;
+}
+
+.step-card {
+  direction: rtl;
+  min-height: 548px;
+  background: #ffffff;
+  border: 1px solid #d7d7d7;
+  border-radius: 5px;
+  padding: 20px 42px 30px;
+  display: flex;
+  justify-content: center;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.step-card__content {
+  width: 100%;
+  max-width: 490px;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  gap: 16px;
+  width: 100%;
+}
+
+.logo-line {
+  width: 200px;
+  height: 10px;
+  background: #e2e2e4;
+  border-radius: 4px;
+}
+
+.logo {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+}
+
+.logo img {
+  display: block;
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+}
+
+.step-card__heading {
+  text-align: center;
+  margin-bottom: 26px;
+}
+
+.step-card__heading h2 {
+  font-size: 18px;
+  line-height: 1.6;
+  font-weight: 700;
+  color: #3e3e3e;
+  margin-bottom: 4px;
+  text-align: right;
+}
+
+/* ================= Alerts ================= */
+.alert {
+  padding: 14px 16px;
+  border-radius: 6px;
+  margin-bottom: 24px;
+  text-align: right;
+}
+
+.alert__title {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+}
+
+.alert__text {
+  font-size: 12.5px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.alert--error {
+  background-color: #fdf2f2;
+  border: 1px solid #f8d7da;
+  color: #a94442;
+}
+
+.alert--pending {
+  background-color: #fcf9f2;
+  border: 1px solid #e9dfcb;
+  color: #796b4b;
+}
+
+/* ================= Forms & Inputs ================= */
+.login-form,
+.options-form {
+  width: 100%;
+}
+
+.form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.form-field label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #898989;
+  text-align: right;
+}
+
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.input-wrapper input {
+  width: 100%;
+  height: 47px;
+  padding: 0 14px;
+  border: 1px solid #d4d4d4;
+  border-radius: 4px;
+  background: #ffffff;
+  outline: none;
+  font-family: inherit;
+  font-size: 15px;
+  color: #333;
+  direction: rtl;
+  box-sizing: border-box;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* Add padding for show-password button when present */
+.input-wrapper:has(.show-password) input {
+  padding-left: 46px;
+}
+
+.input-wrapper input:focus {
+  border-color: #c7b485;
+  box-shadow: 0 0 0 2px rgba(199, 180, 133, 0.15);
+}
+
+.show-password {
+  position: absolute;
+  top: 14px;
+  left: 9px;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  color: #8f8a84;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.show-password:hover {
+  color: #6a6457;
+}
+
+.eye-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* ================= Checkboxes ================= */
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-row input[type='checkbox'] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkbox-row__box {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #c8b98e;
+  border-radius: 4px;
+  background: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.checkbox-row input[type='checkbox']:checked + .checkbox-row__box {
+  background: #c6b587;
+  border-color: #bca877;
+}
+
+.checkbox-row input[type='checkbox']:checked + .checkbox-row__box::after {
+  content: '';
+  width: 5px;
+  height: 9px;
+  border: solid #ffffff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  margin-bottom: 2px;
+}
+
+.checkbox-row__label {
+  font-size: 13.5px;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* ================= Buttons ================= */
+.button {
+  width: 100%;
+  height: 50px;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: 15px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.1s ease;
+}
+
+.button:active {
+  transform: scale(0.99);
+}
+
+.button--primary {
+  border: 1px solid #c6b587;
+  background: #f7f0e1;
+  color: #6d624b;
+}
+
+.button--primary:hover {
+  background: #eee4cf;
+}
+
+.button--secondary {
+  margin-top: 14px;
+  border: 1px solid #d7d7d7;
+  background: #ffffff;
+  color: #9a9a9a;
+}
+
+.button--secondary:hover {
+  background: #fafafa;
+  color: #777;
+}
+
+.mt-auto {
+  margin-top: auto;
+}
+
+/* ================= Responsive ================= */
+@media (max-width: 1000px) {
+  .page {
+    padding: 20px;
+  }
+  .registration {
+    padding: 10px 12px 24px;
+  }
+  .registration__cards {
+    gap: 16px;
+  }
+  .step-card {
+    padding: 30px 25px;
+  }
+}
+
+@media (max-width: 700px) {
+  .page {
+    padding: 12px;
+  }
+  .registration {
+    border-radius: 14px;
+    padding: 12px;
+  }
+  .registration__cards {
+    flex-direction: column;
+    gap: 14px;
+  }
+  .step-card {
+    padding: 26px 18px 28px;
+    min-height: auto;
+  }
+
+  .step-card__heading h2 {
+    font-size: 14px;
+  }
+
+  .form-field label{
+    font-size: 12px;
+  }
+
+  .input-wrapper input {
+    height: 52px;
+    font-size: 15px;
+  }
+  .button {
+    height: 52px;
+  }
+  .mt-auto {
+    margin-top: 24px;
+  }
+}
+
+@media (max-width: 380px) {
+  .page {
+    padding: 8px;
+  }
+  .registration {
+    padding: 8px;
+  }
+  .step-card {
+    padding: 22px 14px 24px;
+  }
+}

@@ -1,11 +1,134 @@
-<p>registration-step-three works!</p>    <div>
-      <h2>الخطوة 3</h2>
+<main class="page">
+  <section class="registration">
+    <header class="registration__header">
+      <h1>إنشاء حساب — تسجيل الدخول وحالة الحساب</h1>
+    </header>
 
-      <button type="button" (click)="back.emit()">
-        السابق
-      </button>
+    <div class="registration__cards">
+      <!-- LEFT PANEL: Login with error -->
+      <section class="step-card step-card--login">
+        <div class="step-card__content">
+          <div class="logo-wrapper">
+            <div class="logo-line"></div>
+            <div class="logo">
+              <img src="/icons/01-logo-full-transparent.svg" alt="Logo" />
+            </div>
+          </div>
 
-      <button type="button" (click)="submitForm.emit()">
-        إنشاء الحساب
-      </button>
+          <div class="step-card__heading">
+            <h2>تسجيل الدخول</h2>
+          </div>
+
+          @if (hasLoginError) {
+            <div class="alert alert--error">
+              <p class="alert__title">الرقم الوطني أو كلمة المرور غير صحيحة</p>
+              <p class="alert__text">تبقّت محاولتان قبل قفل الحساب مؤقتاً لمدة 15 دقيقة</p>
+            </div>
+          }
+
+          <form class="login-form" (submit)="onLogin($event)">
+            <!-- National ID -->
+            <div class="form-field">
+              <label for="nationalId">الرقم الوطني</label>
+              <div class="input-wrapper">
+                <input
+                  id="nationalId"
+                  type="text"
+                  [formField]="form().nationalId"
+                  autocomplete="off"
+                  [class.invalid]="isFieldInvalid(form().nationalId)"
+                />
+              </div>
+
+              @if (isFieldInvalid(form().nationalId)) {
+                <div class="error-message">{{ fieldErrorMessage(form().nationalId) }}</div>
+              }
+            </div>
+
+            <!-- Password -->
+            <div class="form-field">
+              <label for="password">كلمة المرور</label>
+              <div class="input-wrapper">
+                <input
+                  id="password"
+                  [type]="showPassword ? 'text' : 'password'"
+                  [formField]="form().password"
+                  autocomplete="off"
+                  [class.invalid]="isFieldInvalid(form().password)"
+                />
+                <button
+                  class="show-password"
+                  type="button"
+                  (click)="togglePasswordVisibility()"
+                  aria-label="إظهار كلمة المرور"
+                  [attr.aria-pressed]="showPassword"
+                >
+                  <svg class="eye-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path
+                      d="M2.5 12S5.8 5.5 12 5.5 21.5 12 21.5 12 18.2 18.5 12 18.5 2.5 12 2.5 12Z"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <circle cx="12" cy="12" r="2.8" stroke="currentColor" stroke-width="1.8" />
+                  </svg>
+                </button>
+              </div>
+
+              @if (isFieldInvalid(form().password)) {
+                <div class="error-message">{{ fieldErrorMessage(form().password) }}</div>
+              }
+            </div>
+
+            <button type="submit" class="button button--primary" (click)="onGoToAccount()">دخول</button>
+            <button type="button" class="button button--secondary" (click)="onCreateNewAccount()">
+              إنشاء حساب جديد
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- RIGHT PANEL: Account created / pending review -->
+      <section class="step-card step-card--status">
+        <div class="step-card__content">
+          <div class="logo-wrapper">
+            <div class="logo-line"></div>
+            <div class="logo">
+              <img src="/icons/01-logo-full-transparent.svg" alt="Logo" />
+            </div>
+          </div>
+
+          <div class="step-card__heading">
+            <h2>تم إنشاء الحساب</h2>
+          </div>
+
+          <div class="alert alert--pending">
+            <p class="alert__title">الحساب قيد المراجعة</p>
+            <p class="alert__text">
+              يمكنك تصفح المستشفيات والعيادات الآن — الحجز يفتح بعد توثيق بياناتك من موظف التسجيل
+            </p>
+          </div>
+
+          <form class="options-form">
+            <label class="checkbox-row">
+              <input type="checkbox" [formField]="form().notifyBySms" />
+              <span class="checkbox-row__box"></span>
+              <span class="checkbox-row__label">إشعار بالتوثيق يصل على رقم جوالك</span>
+            </label>
+
+            <label class="checkbox-row">
+              <input type="checkbox" [formField]="form().standardReviewPeriod" />
+              <span class="checkbox-row__box"></span>
+              <span class="checkbox-row__label">مدة المراجعة المعتادة، يوم عمل واحد</span>
+            </label>
+          </form>
+
+          <button type="button" class="button button--primary mt-auto" (click)="onGoToAccount()">
+            الذهاب إلى حسابي
+          </button>
+        </div>
+      </section>
     </div>
+  </section>
+</main>

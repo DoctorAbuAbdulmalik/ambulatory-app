@@ -33,13 +33,13 @@ export const AUTH_ROUTES: Routes = [
             (m) => m.RegistrationStepTwo,
           ),
       },
-              {
-          path: 'step3',
-          loadComponent: () =>
-            import('./pages/components/registration-step-three/registration-step-three').then(
-              (m) => m.RegistrationStepThree,
-            )
-        },
+      {
+        path: 'step3',
+        loadComponent: () =>
+          import('./pages/components/registration-step-three/registration-step-three').then(
+            (m) => m.RegistrationStepThree,
+          ),
+      },
     ],
   },
 ];
