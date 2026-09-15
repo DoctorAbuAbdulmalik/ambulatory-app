@@ -1,13 +1,14 @@
 <div class="wrapper">
-  <!-- Hero Section -->
   <section class="hero">
     <div class="hero__content">
       <h1 class="hero__title">احجز موعدك في عيادات المستشفيات العسكرية إلكترونياً</h1>
       <p class="hero__subtitle">سجل بياناتك، وثق هويتك مرة واحدة، ثم اختر العيادة والوقت المناسب</p>
 
       <div class="hero__actions">
-        <button type="button" class="btn btn--primary">ابدأ الحجز</button>
-        <button type="button" class="btn btn--secondary">إنشاء حساب</button>
+        <button type="button" class="btn btn--primary" (click)="openLoginPage()">ابدأ الحجز</button>
+        <button type="button" class="btn btn--secondary" (click)="onCreateAccount()">
+          إنشاء حساب
+        </button>
       </div>
     </div>
 
@@ -17,11 +18,10 @@
         src="/images/hospital.jpeg"
         alt="مستشفى تشرين العسكري"
         loading="lazy"
-      >
+      />
     </div>
   </section>
 
-  <!-- Services Section -->
   <section class="services">
     <h2 class="services__title">الخدمات</h2>
 

@@ -1,1 +1,109 @@
-<p>patient-account works!</p>
+<div class="patient-account" dir="rtl">
+  <div class="patient-account__header">
+    <h1 class="patient-account__title">حسابي</h1>
+  </div>
+
+  <div class="account-card">
+    <div class="account-card__body">
+      <div class="verified-row">
+        <span
+          class="verified-row__badge"
+          [class.verified-row__badge--active]="patient.isVerified"
+        ></span>
+        <span class="verified-row__label">موثّق</span>
+      </div>
+
+      <hr class="divider" />
+
+      <div class="tabs">
+        <button
+          type="button"
+          class="tab-btn"
+          [class.tab-btn--active]="activeTab === 'account'"
+          (click)="setTab('account')"
+        >
+          حسابي
+        </button>
+
+        <button
+          type="button"
+          class="tab-btn"
+          [class.tab-btn--active]="activeTab === 'booking'"
+          (click)="setTab('booking')"
+        >
+          حجز موعد
+        </button>
+
+        <button
+          type="button"
+          class="tab-btn"
+          [class.tab-btn--active]="activeTab === 'appointments'"
+          (click)="setTab('appointments')"
+        >
+          مواعيدي
+        </button>
+      </div>
+
+      <hr class="divider" />
+
+      <div class="patient-summary">
+        <div class="avatar">
+          @if (patient.avatarUrl) {
+            <img [src]="patient.avatarUrl" alt="avatar" class="avatar__img" />
+          }
+        </div>
+
+        <div class="patient-summary__info">
+          <div class="patient-summary__name">اسم المريض</div>
+          <div class="patient-summary__file">رقم الملف</div>
+        </div>
+      </div>
+
+      <hr class="divider" />
+
+      <div class="field-row">
+        <label class="field-row__label" for="fullName">الاسم الكامل</label>
+        <input
+          id="fullName"
+          type="text"
+          class="field-row__input"
+          [value]="patient.fullName"
+          readonly
+        />
+      </div>
+
+      <hr class="divider" />
+
+      <div class="field-row">
+        <label class="field-row__label" for="email">البريد الإلكتروني</label>
+        <input id="email" type="email" class="field-row__input" [value]="patient.email" readonly />
+      </div>
+
+      <hr class="divider" />
+
+      <div class="field-row">
+        <label class="field-row__label" for="nationalId">الرقم الوطني</label>
+        <input
+          id="nationalId"
+          type="text"
+          class="field-row__input"
+          [value]="patient.nationalId"
+          readonly
+        />
+      </div>
+
+      <hr class="divider" />
+
+      <div class="field-row">
+        <label class="field-row__label" for="mobile">رقم الموبايل</label>
+        <input id="mobile" type="tel" class="field-row__input" [value]="patient.mobile" readonly />
+      </div>
+    </div>
+
+    <div class="account-card__footer">
+      <button type="button" class="btn btn--accent" (click)="onEditData()">تعديل البيانات</button>
+
+      <button type="button" class="btn btn--outline" (click)="onBookAppointment()">حجز موعد</button>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   imports: [],
@@ -8,6 +9,8 @@ import { Component, signal } from '@angular/core';
   standalone: true,
 })
 export class SectionOne {
+  private readonly router = inject(Router);
+
   private readonly selectedServicesSignal = signal<ReadonlySet<string>>(new Set());
   readonly selectedServices = this.selectedServicesSignal.asReadonly();
 
@@ -23,5 +26,13 @@ export class SectionOne {
       next.add(service);
     }
     this.selectedServicesSignal.set(next);
+  }
+
+  onCreateAccount(): void {
+    this.router.navigate(['/auth/register']);
+  }
+
+  openLoginPage(): void {
+    this.router.navigate(['/auth/login'])
   }
 }
