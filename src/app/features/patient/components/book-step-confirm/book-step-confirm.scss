@@ -1,0 +1,130 @@
+$color-border-light: #efe9dd;
+$color-text-primary: #5e5a55;
+$color-text-secondary: #a39d92;
+$color-accent-bg: #f4efdf;
+$color-accent-border: #d9cc9e;
+$color-hover-bg: #eee7d5;
+$color-hover-border: #d1c6a9;
+$color-border: #e7e2d8;
+
+:host {
+  display: block;
+  font-family: 'Cairo', Tahoma, Arial, sans-serif;
+  color: $color-text-primary;
+}
+
+.confirm__banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  padding: 24px 20px;
+  border: 1px solid $color-accent-border;
+  border-radius: 12px;
+  background-color: $color-accent-bg;
+  margin-bottom: 24px;
+}
+
+.confirm__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 1px solid $color-accent-border;
+  margin-bottom: 10px;
+}
+
+.confirm__title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #3a3733;
+}
+
+.confirm__subtitle {
+  margin: 0;
+  font-size: 13px;
+  color: $color-text-secondary;
+}
+
+.summary {
+  &__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 0;
+  }
+
+  &__label {
+    font-size: 13px;
+    color: $color-text-secondary;
+  }
+
+  &__value {
+    font-size: 14px;
+    font-weight: 600;
+    color: #3a3733;
+    text-align: left;
+  }
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid $color-border-light;
+  margin: 0;
+}
+
+.notices {
+  list-style: none;
+  margin: 20px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &__item {
+    font-size: 13px;
+    color: $color-text-secondary;
+    padding-right: 10px;
+    border-right: 3px solid $color-accent-border;
+  }
+}
+
+.confirm__footer {
+  display: flex;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.btn {
+  flex: 1;
+  padding: 12px 16px;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+
+  &--outline {
+    background-color: #fff;
+    color: $color-text-primary;
+    border: 1px solid $color-border;
+
+    &:hover {
+      background-color: $color-hover-bg;
+      border: 1px solid $color-hover-border;
+    }
+  }
+
+  &--accent {
+    background-color: $color-accent-bg;
+    color: $color-text-primary;
+    border: 1px solid $color-accent-border;
+
+    &:hover {
+      background-color: $color-hover-bg;
+      border: 1px solid $color-hover-border;
+    }
+  }
+}

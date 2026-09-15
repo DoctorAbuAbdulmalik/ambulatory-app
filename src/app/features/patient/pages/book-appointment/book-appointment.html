@@ -1,0 +1,87 @@
+<div class="booking" dir="rtl">
+  <div class="booking__card">
+    <div class="booking__header">
+      <h1 class="booking__title">{{ headerTitle() }}</h1>
+      <div class="booking__close" aria-hidden="true"></div>
+    </div>
+
+    <span class="booking__step-label">خطوة {{ currentStep() }} من {{ totalSteps }}</span>
+
+    <div class="booking__progress">
+      @for (i of stepIndexes; track i) {
+        <span class="progress-segment" [class.progress-segment--active]="i < currentStep()"></span>
+      }
+    </div>
+
+    @if (sectionTitle(); as title) {
+      <h2 class="booking__section-title">{{ title }}</h2>
+    }
+
+    @if (breadcrumb(); as crumb) {
+      <p class="booking__breadcrumb">{{ crumb }}</p>
+    }
+
+    <div class="booking__content">
+      @switch (currentStep()) {
+        @case (1) {
+          <app-book-step-hospital
+            [hospitals]="hospitals"
+            [selectedId]="selectedHospitalId()"
+            (select)="selectHospital($event)"
+          />
+        }
+        @case (2) {
+          <app-book-step-clinic
+            [clinics]="clinicsForSelectedHospital()"
+            [selectedId]="selectedClinicId()"
+            (select)="selectClinic($event)"
+          />
+        }
+        @case (3) {
+          <app-book-step-doctor
+            [doctors]="doctorsForSelectedClinic()"
+            [selectedId]="selectedDoctorId()"
+            (select)="selectDoctor($event)"
+          />
+        }
+        @case (4) {
+          <app-book-step-datetime
+            [days]="days"
+            [timeSlots]="timeSlots"
+            [selectedDayId]="selectedDayId()"
+            [selectedTimeId]="selectedTimeId()"
+            (selectDay)="selectDay($event)"
+            (selectTime)="selectTime($event)"
+          />
+        }
+        @case (5) {
+          <app-book-step-confirm
+            [hospitalName]="selectedHospital()?.name ?? ''"
+            [clinicAndDoctor]="summaryClinicAndDoctor()"
+            [dateAndTime]="summaryDateAndTime()"
+            [bookingNumber]="bookingNumber"
+            (print)="onPrint()"
+            (goToAppointments)="onGoToAppointments()"
+          />
+        }
+      }
+    </div>
+
+    @if (currentStep() < totalSteps) {
+      <div class="booking__footer">
+        @if (currentStep() > 1) {
+          <button type="button" class="btn btn--outline" (click)="goBack()">السابق</button>
+        }
+
+        <button
+          type="button"
+          class="btn btn--accent booking__next"
+          [disabled]="!canGoNext()"
+          (click)="goNext()"
+        >
+          التالي
+        </button>
+      </div>
+    }
+  </div>
+</div>

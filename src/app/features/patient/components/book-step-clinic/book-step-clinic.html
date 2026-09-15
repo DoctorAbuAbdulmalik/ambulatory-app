@@ -1,0 +1,29 @@
+<div class="options">
+  @for (clinic of clinics(); track clinic.id) {
+    <label
+      class="option"
+      [class.option--selected]="clinic.id === selectedId()"
+      [class.option--disabled]="clinic.disabled"
+    >
+      <div class="option__info">
+        <span class="option__title">{{ clinic.name }}</span>
+        <span class="option__subtitle">
+          @if (clinic.disabled) {
+            {{ clinic.disabledReason ?? 'العيادة مغلقة مؤقتاً' }}
+          } @else {
+            {{ clinic.doctorsCount }} أطباء
+          }
+        </span>
+      </div>
+
+      <input
+        type="radio"
+        name="booking-clinic"
+        class="option__radio"
+        [disabled]="clinic.disabled"
+        [checked]="clinic.id === selectedId()"
+        (change)="select.emit(clinic.id)"
+      />
+    </label>
+  }
+</div>

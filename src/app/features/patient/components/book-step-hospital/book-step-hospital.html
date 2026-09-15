@@ -1,0 +1,18 @@
+<div class="options">
+  @for (hospital of hospitals(); track hospital.id) {
+    <label class="option" [class.option--selected]="hospital.id === selectedId()">
+      <div class="option__info">
+        <span class="option__title">{{ hospital.name }}</span>
+        <span class="option__subtitle">{{ hospital.clinicsCount }} عيادات</span>
+      </div>
+
+      <input
+        type="radio"
+        name="booking-hospital"
+        class="option__radio"
+        [checked]="hospital.id === selectedId()"
+        (change)="select.emit(hospital.id)"
+      />
+    </label>
+  }
+</div>

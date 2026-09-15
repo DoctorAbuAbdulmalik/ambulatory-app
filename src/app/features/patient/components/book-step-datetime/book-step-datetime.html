@@ -1,0 +1,46 @@
+<div class="datetime">
+  <h3 class="datetime__heading">الأسبوع الحالي فقط</h3>
+
+  <div class="days">
+    @for (day of days(); track day.id) {
+      <label
+        class="day"
+        [class.day--selected]="day.id === selectedDayId()"
+        [class.day--disabled]="day.disabled"
+      >
+        <input
+          type="radio"
+          name="booking-day"
+          class="day__radio"
+          [disabled]="day.disabled"
+          [checked]="day.id === selectedDayId()"
+          (change)="selectDay.emit(day.id)"
+        />
+        <span class="day__label">{{ day.label }}</span>
+        <span class="day__date">{{ day.date }}</span>
+      </label>
+    }
+  </div>
+
+  <h3 class="datetime__heading">الأوقات المتاحة</h3>
+
+  <div class="times">
+    @for (slot of timeSlots(); track slot.id) {
+      <label
+        class="time"
+        [class.time--selected]="slot.id === selectedTimeId()"
+        [class.time--disabled]="slot.disabled"
+      >
+        <input
+          type="radio"
+          name="booking-time"
+          class="time__radio"
+          [disabled]="slot.disabled"
+          [checked]="slot.id === selectedTimeId()"
+          (change)="selectTime.emit(slot.id)"
+        />
+        <span class="time__label">{{ slot.label }}</span>
+      </label>
+    }
+  </div>
+</div>

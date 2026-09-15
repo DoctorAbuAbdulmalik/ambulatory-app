@@ -1,0 +1,89 @@
+$color-border: #e7e2d8;
+$color-text-primary: #5e5a55;
+$color-text-secondary: #a39d92;
+$color-accent-bg: #f4efdf;
+$color-accent-border: #d9cc9e;
+$color-hover-bg: #eee7d5;
+$color-hover-border: #d1c6a9;
+
+:host {
+  display: block;
+  font-family: 'Cairo', Tahoma, Arial, sans-serif;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px;
+  border: 1px solid $color-border;
+  border-radius: 10px;
+  background-color: #fff;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+
+  &:hover {
+    background-color: $color-hover-bg;
+    border-color: $color-hover-border;
+  }
+
+  &--selected {
+    background-color: $color-accent-bg;
+    border-color: $color-accent-border;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  &__title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #3a3733;
+  }
+
+  &__subtitle {
+    font-size: 13px;
+    color: $color-text-secondary;
+  }
+
+  &__radio {
+    appearance: none;
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    margin: 0;
+    border-radius: 6px;
+    background-color: #fff;
+    border: 1px solid $color-border;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+
+    &:checked {
+      background-color: $color-accent-border;
+      border-color: $color-accent-border;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 7px;
+        height: 12px;
+        border: solid #fff;
+        border-width: 0 2px 2px 0;
+        transform: translate(-50%, -60%) rotate(45deg);
+      }
+    }
+  }
+}

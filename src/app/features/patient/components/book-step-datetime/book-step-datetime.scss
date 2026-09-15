@@ -1,0 +1,155 @@
+$color-border: #e7e2d8;
+$color-text-secondary: #a39d92;
+$color-accent-bg: #f4efdf;
+$color-accent-border: #d9cc9e;
+$color-hover-bg: #eee7d5;
+$color-hover-border: #d1c6a9;
+
+:host {
+  display: block;
+  font-family: 'Cairo', Tahoma, Arial, sans-serif;
+}
+
+.datetime__heading {
+  margin: 0 0 12px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #3a3733;
+
+  &:not(:first-child) {
+    margin-top: 24px;
+  }
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.day {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 8px;
+  border: 1px solid $color-border;
+  border-radius: 10px;
+  background-color: #fff;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+
+  &:hover {
+    background-color: $color-hover-bg;
+    border-color: $color-hover-border;
+  }
+
+  &--selected {
+    background-color: $color-accent-bg;
+    border-color: $color-accent-border;
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    border-style: dashed;
+    background-color: #fafafa;
+    color: $color-text-secondary;
+
+    &:hover {
+      background-color: #fafafa;
+      border-color: $color-border;
+    }
+  }
+
+  &__radio {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  &__label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #3a3733;
+  }
+
+  &__date {
+    font-size: 15px;
+    font-weight: 700;
+    color: #3a3733;
+  }
+
+  &--disabled &__label,
+  &--disabled &__date {
+    color: $color-text-secondary;
+  }
+}
+
+.times {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.time {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  border: 1px solid $color-border;
+  border-radius: 10px;
+  background-color: #fff;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+
+  &:hover {
+    background-color: $color-hover-bg;
+    border-color: $color-hover-border;
+  }
+
+  &--selected {
+    background-color: $color-accent-bg;
+    border-color: $color-accent-border;
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    border-style: dashed;
+    background-color: #fafafa;
+
+    &:hover {
+      background-color: #fafafa;
+      border-color: $color-border;
+    }
+  }
+
+  &__radio {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  &__label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #3a3733;
+  }
+
+  &--disabled &__label {
+    color: $color-text-secondary;
+  }
+}

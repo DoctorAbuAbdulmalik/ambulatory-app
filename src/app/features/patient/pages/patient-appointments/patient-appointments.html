@@ -1,0 +1,60 @@
+<div class="patient-appointments" dir="rtl">
+  <div class="patient-appointments__header">
+    <h1 class="patient-appointments__title">مواعيدي</h1>
+  </div>
+
+  <div class="appointments-card">
+    <div class="appointments-card__body">
+      <div class="verified-row">
+        <span class="verified-row__badge" [class.verified-row__badge--active]="isVerified"></span>
+        <span class="verified-row__label">موثّق</span>
+      </div>
+
+      <hr class="divider" />
+
+      <div class="tabs">
+        <button
+          type="button"
+          class="tab-btn"
+          [class.tab-btn--active]="activeTab() === 'upcoming'"
+          (click)="setTab('upcoming')"
+        >
+          القادمة
+        </button>
+
+        <button
+          type="button"
+          class="tab-btn"
+          [class.tab-btn--active]="activeTab() === 'past'"
+          (click)="setTab('past')"
+        >
+          السابقة
+        </button>
+      </div>
+
+      <div class="appointments-list">
+        @for (appointment of appointments(); track appointment.id) {
+          <article class="appointment" [class.appointment--disabled]="appointment.status === 'past'">
+            <div class="appointment__info">
+              <span class="appointment__title">{{ appointment.title }}</span>
+
+              @if (appointment.dateTime) {
+                <span class="appointment__meta">{{ appointment.dateTime }}</span>
+              }
+
+              <span class="appointment__note">{{ appointment.note }}</span>
+            </div>
+
+            <div class="appointment__thumb" aria-hidden="true"></div>
+          </article>
+        }
+      </div>
+
+      <ul class="notices">
+        <li class="notices__item">لا يوجد إلغاء من حساب المريض</li>
+        <li class="notices__item">التعديل في يوم الحجز فقط</li>
+        <li class="notices__item">حجز واحد لكل عيادة في الأسبوع</li>
+      </ul>
+    </div>
+  </div>
+</div>

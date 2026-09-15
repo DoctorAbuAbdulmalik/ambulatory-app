@@ -1,0 +1,29 @@
+<div class="options">
+  @for (doctor of doctors(); track doctor.id) {
+    <label
+      class="option"
+      [class.option--selected]="doctor.id === selectedId()"
+      [class.option--disabled]="doctor.disabled"
+    >
+      <div class="option__info">
+        <span class="option__title">{{ doctor.name }}</span>
+        <span class="option__subtitle">
+          @if (doctor.disabled) {
+            لا مواعيد متاحة
+          } @else {
+            {{ doctor.title }} · {{ doctor.availableSlots }} مواعيد متاحة
+          }
+        </span>
+      </div>
+
+      <input
+        type="radio"
+        name="booking-doctor"
+        class="option__avatar"
+        [disabled]="doctor.disabled"
+        [checked]="doctor.id === selectedId()"
+        (change)="select.emit(doctor.id)"
+      />
+    </label>
+  }
+</div>

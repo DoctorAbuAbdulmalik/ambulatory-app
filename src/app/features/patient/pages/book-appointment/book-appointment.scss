@@ -1,0 +1,137 @@
+$color-border-light: #efe9dd;
+$color-text-primary: #5e5a55;
+$color-text-secondary: #a39d92;
+$color-placeholder-bg: #ece5d6;
+$color-accent-bg: #f4efdf;
+$color-accent-border: #d9cc9e;
+$color-hover-bg: #eee7d5;
+$color-hover-border: #d1c6a9;
+$color-border: #e7e2d8;
+
+:host {
+  display: block;
+  font-family: 'Cairo', Tahoma, Arial, sans-serif;
+  color: $color-text-primary;
+}
+
+.booking {
+  background-color: #f9f9f9;
+  padding: 32px 16px;
+}
+
+.booking__card {
+  max-width: 520px;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid $color-border-light;
+  border-radius: 12px;
+  padding: 24px 28px;
+}
+
+.booking__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.booking__title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #3a3733;
+}
+
+.booking__close {
+  flex-shrink: 0;
+  width: 64px;
+  height: 24px;
+  border-radius: 4px;
+  background-color: $color-placeholder-bg;
+}
+
+.booking__step-label {
+  display: block;
+  font-size: 13px;
+  color: $color-text-secondary;
+  margin-bottom: 10px;
+}
+
+.booking__progress {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.progress-segment {
+  flex: 1;
+  height: 5px;
+  border-radius: 3px;
+  background-color: $color-placeholder-bg;
+
+  &--active {
+    background-color: $color-accent-border;
+  }
+}
+
+.booking__section-title {
+  margin: 0 0 8px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #3a3733;
+}
+
+.booking__breadcrumb {
+  margin: 0 0 16px;
+  font-size: 13px;
+  color: $color-text-secondary;
+}
+
+.booking__content {
+  margin-bottom: 24px;
+}
+
+.booking__footer {
+  display: flex;
+  gap: 16px;
+}
+
+.btn {
+  padding: 12px 28px;
+  font-weight: 700;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  &--outline {
+    background-color: #fff;
+    color: $color-text-primary;
+    border: 1px solid $color-border;
+
+    &:hover:not(:disabled) {
+      background-color: $color-hover-bg;
+      border-color: $color-hover-border;
+    }
+  }
+
+  &--accent {
+    background-color: $color-accent-bg;
+    color: $color-text-primary;
+    border: 1px solid $color-accent-border;
+
+    &:hover:not(:disabled) {
+      background-color: $color-hover-bg;
+      border-color: $color-hover-border;
+    }
+  }
+}
+
+.booking__next {
+  margin-inline-start: auto;
+}

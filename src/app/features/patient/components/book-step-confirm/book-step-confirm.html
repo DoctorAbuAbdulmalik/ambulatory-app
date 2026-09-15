@@ -1,0 +1,45 @@
+<div class="confirm">
+  <div class="confirm__banner">
+    <div class="confirm__icon" aria-hidden="true"></div>
+    <p class="confirm__title">تم تأكيد الموعد</p>
+    <p class="confirm__subtitle">يصلك تأكيد وتذكير قبل الموعد.</p>
+  </div>
+
+  <div class="summary">
+    <div class="summary__row">
+      <span class="summary__label">المستشفى</span>
+      <span class="summary__value">{{ hospitalName() }}</span>
+    </div>
+
+    <hr class="divider" />
+
+    <div class="summary__row">
+      <span class="summary__label">العيادة والطبيب</span>
+      <span class="summary__value">{{ clinicAndDoctor() }}</span>
+    </div>
+
+    <hr class="divider" />
+
+    <div class="summary__row">
+      <span class="summary__label">التاريخ والوقت</span>
+      <span class="summary__value">{{ dateAndTime() }}</span>
+    </div>
+
+    <hr class="divider" />
+
+    <div class="summary__row">
+      <span class="summary__label">رقم الحجز</span>
+      <span class="summary__value">{{ bookingNumber() }}</span>
+    </div>
+  </div>
+
+  <ul class="notices">
+    <li class="notices__item">التعديل في يوم الحجز فقط</li>
+    <li class="notices__item">لا يوجد إلغاء من الحساب</li>
+  </ul>
+
+  <div class="confirm__footer">
+    <button type="button" class="btn btn--accent" (click)="goToAppointments.emit()">مواعيدي</button>
+    <button type="button" class="btn btn--outline" (click)="print.emit()">طباعة</button>
+  </div>
+</div>

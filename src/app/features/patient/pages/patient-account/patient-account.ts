@@ -39,7 +39,11 @@ export class PatientAccount {
     this.activeTab = tab;
 
     if (tab === 'booking') {
-      // TODO: навигация на страницу бронирования, если она есть отдельным роутом
+      this.onBookAppointment();
+    }
+
+    if (tab === 'appointments') {
+      this.router.navigate(['/patient/appointments']);
     }
   }
 
@@ -48,7 +52,6 @@ export class PatientAccount {
   }
 
   onBookAppointment(): void {
-    // TODO: заменить на реальный роут бронирования, когда он будет готов
-    // this.router.navigate(['/appointments/book']);
+    this.router.navigate(['/patient/book-appointment']);
   }
 }
