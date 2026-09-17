@@ -1,0 +1,89 @@
+<div class="appointments" dir="rtl">
+  <div class="appointments__toolbar">
+    <div class="appointments__heading">
+      <h2 class="appointments__title">المواعيد القادمة</h2>
+      <p class="appointments__subtitle">
+        محجوز ← تم بعد حضور المريض والتحقق من التوثيق
+      </p>
+    </div>
+
+    <div class="appointments__actions">
+      <button type="button" class="btn btn--outline" (click)="onCloseClinic()">إغلاق عيادة</button>
+      <button type="button" class="btn btn--outline" (click)="onDoctorAbsence()">غياب طبيب</button>
+      <button type="button" class="btn btn--outline" (click)="onEmergencyCase()">حالة طارئة</button>
+    </div>
+  </div>
+
+  <div class="filters">
+    <div class="filters__group">
+      <select class="filters__select">
+        <option>كل الأيام</option>
+      </select>
+
+      <select class="filters__select">
+        <option>كل العيادات</option>
+      </select>
+
+      <div class="search-box">
+        <span class="search-box__icon" aria-hidden="true"></span>
+        <input type="text" placeholder="مريض، ملف، رقم حجز" />
+      </div>
+    </div>
+
+    <button type="button" class="btn btn--outline" (click)="resetFilters()">إعادة الفلاتر</button>
+  </div>
+
+  <div class="table-wrapper">
+    <table class="appointments-table">
+      <thead>
+        <tr>
+          <th>الوقت</th>
+          <th>التاريخ</th>
+          <th>المريض</th>
+          <th>العيادة</th>
+          <th>الطبيب</th>
+          <th>المحضور</th>
+          <th>الحالة</th>
+          <th>الإجراء</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (row of rows; track row.id) {
+          <tr>
+            <td class="appointments-table__time">{{ row.time }}</td>
+            <td><span class="skeleton skeleton--text"></span></td>
+            <td><span class="skeleton skeleton--text"></span></td>
+            <td><span class="skeleton skeleton--text"></span></td>
+            <td><span class="skeleton skeleton--text"></span></td>
+            <td>{{ attendanceLabels[row.attendance] }}</td>
+            <td>
+              @if (row.status === 'booked') {
+                <span class="status-badge">{{ statusLabels[row.status] }}</span>
+              } @else {
+                <span class="status-badge status-badge--cancelled">{{ statusLabels[row.status] }}</span>
+              }
+            </td>
+            <td>
+              @if (row.status === 'booked') {
+                <div class="row-actions">
+                  <button type="button" class="btn btn--outline btn--sm" (click)="onCancel(row)">
+                    إلغاء
+                  </button>
+                  <button type="button" class="btn btn--accent btn--sm" (click)="onComplete(row)">
+                    تم
+                  </button>
+                  <button type="button" class="btn btn--outline btn--sm" (click)="onTransfer(row)">
+                    نقل
+                  </button>
+                </div>
+              } @else {
+                <span class="row-actions__empty">—</span>
+              }
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,45 +1,66 @@
+<ng-template #headerActionsTpl>
+  <div class="frontdesk__header-actions">
+    <div class="frontdesk__profile" aria-hidden="true"></div>
+
+    <div class="search-box">
+      <span class="search-box__icon" aria-hidden="true"></span>
+      <input type="text" placeholder="" />
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #navListTpl>
+  <nav class="nav-list">
+    @for (item of navItems; track item.id) {
+      <label class="nav-item" [class.nav-item--active]="item.id === activeView()">
+        <input
+          type="checkbox"
+          class="nav-item__checkbox"
+          [checked]="item.id === activeView()"
+          (change)="selectView(item.id)"
+        />
+        <span>{{ item.label }}</span>
+      </label>
+    }
+  </nav>
+</ng-template>
+
 <div class="frontdesk" dir="rtl">
   <header class="frontdesk__header">
     <h1 class="frontdesk__title">{{ headerTitle() }}</h1>
+
+    <div class="frontdesk__header-actions-slot frontdesk__header-actions-slot--tablet">
+      <ng-container [ngTemplateOutlet]="headerActionsTpl" />
+    </div>
   </header>
 
   <div class="frontdesk__role-row">
-    <div class="frontdesk__header-actions">
-      <div class="frontdesk__profile" aria-hidden="true"></div>
-
-      <div class="search-box">
-        <span class="search-box__icon" aria-hidden="true"></span>
-        <input type="text" placeholder="" />
-      </div>
+    <div class="frontdesk__header-actions-slot frontdesk__header-actions-slot--desktop">
+      <ng-container [ngTemplateOutlet]="headerActionsTpl" />
     </div>
 
     <label class="role-toggle">
       <span>موظف استقبال</span>
       <input type="checkbox" class="role-toggle__checkbox" checked />
     </label>
+
+    <div class="frontdesk__nav-slot frontdesk__nav-slot--tablet">
+      <ng-container [ngTemplateOutlet]="navListTpl" />
+    </div>
   </div>
 
   <div class="frontdesk__body">
     <aside class="frontdesk__nav">
-      <nav class="nav-list">
-        @for (item of navItems; track item.id) {
-          <label class="nav-item" [class.nav-item--active]="item.id === activeView()">
-            <input
-              type="checkbox"
-              class="nav-item__checkbox"
-              [checked]="item.id === activeView()"
-              (change)="selectView(item.id)"
-            />
-            <span>{{ item.label }}</span>
-          </label>
-        }
-      </nav>
+      <ng-container [ngTemplateOutlet]="navListTpl" />
     </aside>
 
     <main class="frontdesk__content">
       @switch (activeView()) {
         @case ('registration-requests') {
           <app-patient-requests-page />
+        }
+        @case ('appointments') {
+          <app-patient-appointments-page />
         }
         @default {
           <div class="frontdesk__placeholder">قريباً</div>

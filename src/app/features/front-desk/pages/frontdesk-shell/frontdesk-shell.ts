@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
+import { NgTemplateOutlet } from '@angular/common';
 import { PatientRequestsPage } from '../../components/patient-requests-page/patient-requests-page';
+import { PatientAppointmentsPage } from '../../components/patient-appointments-page/patient-appointments-page';
 import { FrontdeskNavItem, FrontdeskViewId } from '../../models/frontdesk-nav.model';
 
 const NAV_ITEMS: readonly FrontdeskNavItem[] = [
@@ -10,7 +12,7 @@ const NAV_ITEMS: readonly FrontdeskNavItem[] = [
 ];
 
 @Component({
-  imports: [PatientRequestsPage],
+  imports: [NgTemplateOutlet, PatientRequestsPage, PatientAppointmentsPage],
   selector: 'app-frontdesk-shell',
   styleUrl: './frontdesk-shell.scss',
   templateUrl: './frontdesk-shell.html',
