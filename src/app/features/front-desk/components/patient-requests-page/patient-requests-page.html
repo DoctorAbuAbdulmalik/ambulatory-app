@@ -1,0 +1,72 @@
+<div class="requests" dir="rtl">
+  <div class="requests__toolbar">
+    <h2 class="requests__title">طلبات التسجيل</h2>
+
+    <div class="requests__actions">
+      <button type="button" class="btn btn--outline" (click)="onExport()">تصدير</button>
+      <button type="button" class="btn btn--accent" (click)="onApproveSelected()">
+        اعتماد المحدد
+      </button>
+    </div>
+  </div>
+
+  <div class="stats">
+    @for (stat of stats; track stat.label) {
+      <div class="stat-card">
+        <span class="stat-card__value">{{ stat.value }}</span>
+        <span class="stat-card__label">{{ stat.label }}</span>
+      </div>
+    }
+  </div>
+
+  <div class="filters">
+    <div class="filters__group">
+      <div class="search-box">
+        <span class="search-box__icon" aria-hidden="true"></span>
+        <input type="text" placeholder="بحث" />
+      </div>
+      <select
+        class="filters__select"
+        [value]="statusFilter()"
+        (change)="setStatusFilter($any($event.target).value)"
+      >
+        @for (option of statusFilterOptions; track option.id) {
+          <option [value]="option.id">{{ option.label }}</option>
+        }
+      </select>
+    </div>
+    <button type="button" class="btn btn--outline" (click)="resetFilters()">إعادة الفلاتر</button>
+  </div>
+
+  <div class="table-wrapper">
+    <table class="requests-table">
+      <thead>
+        <tr>
+          <th>المريض</th>
+          <th>الرقم الوطني</th>
+          <th>تاريخ الطلب</th>
+          <th>الحالة</th>
+          <th>الإجراء</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (row of rows(); track row.id) {
+          <tr>
+            <td><span class="skeleton skeleton--text"></span></td>
+            <td><span class="skeleton skeleton--text"></span></td>
+            <td><span class="skeleton skeleton--text"></span></td>
+            <td>
+              <span class="status-badge">{{ statusLabels[row.status] }}</span>
+            </td>
+            <td>
+              <button type="button" class="btn btn--accent btn--sm" (click)="onReview(row)">
+                مراجعة
+              </button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

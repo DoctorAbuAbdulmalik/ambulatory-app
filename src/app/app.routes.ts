@@ -18,6 +18,10 @@ export const routes: Routes = [
     loadChildren: () => import('./features/patient/patient.routes').then((m) => m.PATIENT_ROUTES),
   },
   {
+    path: 'frontdesk',
+    loadChildren: () => import('./features/front-desk/front-desk.routes').then((m) => m.FRONTDESK_ROUTES)
+  },
+  {
     path: '**',
     redirectTo: 'auth/login',
   },
