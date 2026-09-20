@@ -52,10 +52,10 @@
         @for (row of rows; track row.id) {
           <tr>
             <td class="appointments-table__time">{{ row.time }}</td>
-            <td><span class="skeleton skeleton--text"></span></td>
-            <td><span class="skeleton skeleton--text"></span></td>
-            <td><span class="skeleton skeleton--text"></span></td>
-            <td><span class="skeleton skeleton--text"></span></td>
+            <td>20.09.2026</td>
+            <td>محمد زكي</td>
+            <td>المستشفى العسكري بدمشق</td>
+            <td>عبد الملك زكي</td>
             <td>{{ attendanceLabels[row.attendance] }}</td>
             <td>
               @if (row.status === 'booked') {

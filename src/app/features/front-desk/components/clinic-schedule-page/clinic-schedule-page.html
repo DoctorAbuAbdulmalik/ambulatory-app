@@ -1,0 +1,84 @@
+<div class="schedule" dir="rtl">
+  <div class="schedule__layout">
+    <aside class="schedule__side">
+      <div class="schedule__side-actions">
+        <button type="button" class="btn btn--outline" (click)="onAddUnavailablePeriod()">
+          فترة عدم توفر
+        </button>
+        <button type="button" class="btn btn--accent" (click)="onEditWorkHours()">
+          ساعات العمل
+        </button>
+      </div>
+
+      <div class="panel">
+        <h3 class="panel__title">ساعات العمل</h3>
+
+        <div class="day-chips">
+          @for (day of workHoursDays; track day.id) {
+            <button
+              type="button"
+              class="day-chip"
+              [class.day-chip--active]="day.id === selectedWorkHoursDay()"
+              (click)="selectWorkHoursDay(day.id)"
+            >
+              {{ day.label }}
+            </button>
+          }
+        </div>
+
+        <p class="panel__text">{{ selectedWorkHours() }}</p>
+      </div>
+
+      <div class="panel">
+        <h3 class="panel__title">فترات عدم التوفر</h3>
+
+        <div class="unavailable-list">
+          @for (period of unavailablePeriods; track period.id) {
+            <div class="unavailable-item">
+              <span class="unavailable-item__title">{{ period.title }}</span>
+              <span class="unavailable-item__date">{{ period.dateRange }}</span>
+            </div>
+          }
+        </div>
+      </div>
+    </aside>
+
+    <main class="schedule__main">
+      <div class="schedule__header">
+        <h2 class="schedule__title">{{ clinicName }}</h2>
+      </div>
+
+      <div class="table-wrapper">
+        <div class="schedule__view">
+          <span class="schedule__week-label">الأسبوع — يبدأ الأحد</span>
+          <button type="button" class="btn btn--outline">أسبوع</button>
+        </div>
+        <table class="schedule-table">
+          <thead>
+            <tr>
+              <th class="schedule-table__time-col"></th>
+              @for (day of days; track day.id) {
+                <th>{{ day.label }}</th>
+              }
+            </tr>
+          </thead>
+
+          <tbody>
+            @for (time of times; track time) {
+              <tr>
+                <td class="schedule-table__time-col">{{ time }}</td>
+                @for (day of days; track day.id) {
+                  <td>
+                    @if (slotState(day.id, time); as state) {
+                      <span class="slot" [class.slot--blocked]="state === 'blocked'"></span>
+                    }
+                  </td>
+                }
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+</div>

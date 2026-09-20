@@ -62,6 +62,12 @@
         @case ('appointments') {
           <app-patient-appointments-page />
         }
+        @case ('clinic-schedules') {
+          <app-clinic-schedule-page />
+        }
+        @case ('clinics') {
+          <app-appointments-management-page />
+        }
         @default {
           <div class="frontdesk__placeholder">قريباً</div>
         }

@@ -14,7 +14,7 @@ $color-hover-border: #d1c6a9;
   color: $color-text-primary;
 }
 
-.appointments__toolbar {
+.clinics__toolbar {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -23,29 +23,23 @@ $color-hover-border: #d1c6a9;
   flex-wrap: wrap;
 }
 
-.appointments__heading {
+.clinics__heading {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-.appointments__title {
+.clinics__title {
   margin: 0;
   font-size: 17px;
   font-weight: 700;
   color: #3a3733;
 }
 
-.appointments__subtitle {
+.clinics__subtitle {
   margin: 0;
   font-size: 13px;
   color: $color-text-secondary;
-}
-
-.appointments__actions {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
 }
 
 .filters {
@@ -53,35 +47,18 @@ $color-hover-border: #d1c6a9;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 16px;
+  padding: 16px 10px;
   flex-wrap: wrap;
+  border: 1px solid #ddd;
+  border-bottom-color: transparent;
   background-color: #e9e9ec;
-  padding: 10px 15px;
-
-  &__group {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-
-  &__select {
-    padding: 8px 12px;
-    border: 1px solid $color-border;
-    border-radius: 8px;
-    background-color: #fff;
-    font-family: inherit;
-    font-size: 14px;
-    color: $color-text-primary;
-    cursor: pointer;
-  }
 }
 
 .search-box {
   display: flex;
   align-items: center;
   gap: 8px;
-  min-width: 180px;
+  min-width: 220px;
   padding: 8px 12px;
   border: 1px solid $color-border;
   border-radius: 8px;
@@ -119,13 +96,23 @@ $color-hover-border: #d1c6a9;
   }
 }
 
+.count-pill {
+  display: inline-flex;
+  padding: 8px 16px;
+  border: 1px solid $color-border;
+  border-radius: 8px;
+  background-color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  color: $color-text-primary;
+}
+
 .table-wrapper {
   overflow-x: auto;
   border: 1px solid $color-border-light;
-  border-radius: 10px;
 }
 
-.appointments-table {
+.clinics-table {
   width: 100%;
   border-collapse: collapse;
 
@@ -145,11 +132,6 @@ $color-hover-border: #d1c6a9;
 
   tbody tr:not(:last-child) td {
     border-bottom: 1px solid $color-border-light;
-  }
-
-  &__time {
-    font-weight: 700;
-    color: #3a3733;
   }
 }
 
@@ -173,17 +155,8 @@ $color-hover-border: #d1c6a9;
   font-size: 13px;
   font-weight: 600;
 
-  &--cancelled {
+  &--closed {
     border-color: $color-border;
-    color: $color-text-secondary;
-  }
-}
-
-.row-actions {
-  display: flex;
-  gap: 6px;
-
-  &__empty {
     color: $color-text-secondary;
   }
 }

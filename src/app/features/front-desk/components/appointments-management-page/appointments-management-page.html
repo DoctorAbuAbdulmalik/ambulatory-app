@@ -1,0 +1,59 @@
+<div class="clinics" dir="rtl">
+  <div class="clinics__toolbar">
+    <div class="clinics__heading">
+      <h2 class="clinics__title">العيادات</h2>
+      <p class="clinics__subtitle">التخصص والطبيب وأيام العمل والدوام لكل عيادة</p>
+    </div>
+
+    <button type="button" class="btn btn--accent" (click)="onAddClinic()">عيادة جديدة</button>
+  </div>
+
+  <div class="filters">
+    <div class="search-box">
+      <span class="search-box__icon" aria-hidden="true"></span>
+      <input type="text" placeholder="عيادة، تخصص، طبيب" />
+    </div>
+
+    <span class="count-pill">{{ visibleCount }} من {{ totalCount }}</span>
+  </div>
+
+  <div class="table-wrapper">
+    <table class="clinics-table">
+      <thead>
+        <tr>
+          <th>العيادة</th>
+          <th>الطبيب</th>
+          <th>أيام العمل</th>
+          <th>الدوام</th>
+          <th>المدة</th>
+          <th>الحالة</th>
+          <th>الإجراء</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (row of rows; track row.id) {
+          <tr>
+            <td>مستشفى دمشق العسكري</td>
+            <td>عبد الملك زكي</td>
+            <td>الثلاثاء</td>
+            <td>{{ row.workHours }}</td>
+            <td>{{ row.duration }}</td>
+            <td>
+              @if (row.status === 'open') {
+                <span class="status-badge">{{ statusLabels[row.status] }}</span>
+              } @else {
+                <span class="status-badge status-badge--closed">{{ statusLabels[row.status] }}</span>
+              }
+            </td>
+            <td>
+              <button type="button" class="btn btn--outline btn--sm" (click)="onEdit(row)">
+                تعديل
+              </button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
