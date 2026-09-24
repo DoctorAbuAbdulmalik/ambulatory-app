@@ -63,7 +63,9 @@
   border: 1px solid #e5e7eb;
   border-radius: 14px;
   background-color: #fff;
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 
   &:hover {
     box-shadow: 0 8px 20px rgba(13, 110, 94, 0.08);
@@ -102,7 +104,9 @@
     background-color: #fff;
     color: #374151;
     cursor: pointer;
-    transition: border-color 0.2s ease, color 0.2s ease;
+    transition:
+      border-color 0.2s ease,
+      color 0.2s ease;
 
     &:hover {
       border-color: var(--primary-color);

@@ -1,0 +1,41 @@
+<div class="hospitals" dir="rtl">
+  <div class="hospitals__toolbar">
+    <h2 class="hospitals__title">المستشفيات</h2>
+
+    <button type="button" class="btn btn--accent" (click)="onAddHospital()">مستشفى جديد</button>
+  </div>
+
+  <div class="table-wrapper">
+    <table class="hospitals-table">
+      <thead>
+        <tr>
+          <th>المستشفى</th>
+          <th>المدينة</th>
+          <th>الحالة</th>
+          <th>الإجراء</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (row of rows; track row.id) {
+          <tr>
+            <td><span class="skeleton skeleton--text"></span></td>
+            <td><span class="skeleton skeleton--text"></span></td>
+            <td>
+              @if (row.status === 'locked') {
+                <span class="status-badge">{{ statusLabels[row.status] }}</span>
+              } @else {
+                <span class="status-badge status-badge--disabled">{{ statusLabels[row.status] }}</span>
+              }
+            </td>
+            <td>
+              <button type="button" class="btn btn--outline btn--sm" (click)="onEdit(row)">
+                تعديل
+              </button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,87 @@
+<header class="admin__header">
+  <h1 class="admin__title">{{ headerTitle() }}</h1>
+</header>
+
+<div class="admin" dir="rtl">
+  <div class="admin__role-row">
+    <div class="admin__header-actions">
+      <div class="admin__profile" aria-hidden="true"></div>
+
+      <div class="search-box">
+        <span class="search-box__icon" aria-hidden="true"></span>
+        <input type="text" placeholder="" />
+      </div>
+    </div>
+    <label class="role-toggle">
+      <span>مسؤول</span>
+      <input type="checkbox" class="role-toggle__checkbox" checked />
+    </label>
+  </div>
+
+  <label class="notice-banner">
+    <input type="checkbox" class="notice-banner__checkbox" checked />
+    <span>منطقة المسؤول — كل إجراء يُسجّل</span>
+  </label>
+
+  <div class="admin__body">
+    <aside class="admin__nav">
+      <nav class="nav-list">
+        @for (item of frontdeskNavItems; track item.id) {
+          <label class="nav-item" [class.nav-item--active]="item.id === activeView()">
+            <input
+              type="checkbox"
+              class="nav-item__checkbox"
+              [checked]="item.id === activeView()"
+              (change)="selectView(item.id)"
+            />
+            <span>{{ item.label }}</span>
+          </label>
+        }
+      </nav>
+
+      <div class="nav-group">
+        <h3 class="nav-group__title">أدوات المسؤول</h3>
+
+        <nav class="nav-list">
+          @for (item of adminToolNavItems; track item.id) {
+            <label class="nav-item" [class.nav-item--active]="item.id === activeView()">
+              <input
+                type="checkbox"
+                class="nav-item__checkbox"
+                [checked]="item.id === activeView()"
+                (change)="selectView(item.id)"
+              />
+              <span>{{ item.label }}</span>
+            </label>
+          }
+        </nav>
+      </div>
+    </aside>
+
+    <main class="admin__content">
+      @switch (activeView()) {
+        @case ('registration-requests') {
+          <app-patient-requests-page />
+        }
+        @case ('appointments') {
+          <app-patient-appointments-page />
+        }
+        @case ('clinic-schedules') {
+          <app-clinic-schedule-page />
+        }
+        @case ('clinics') {
+          <app-appointments-management-page />
+        }
+        @case ('hospitals') {
+          <app-hospital-management-page />
+        }
+        @case ('reception-accounts') {
+          <app-reception-accounts-page />
+        }
+        @default {
+          <div class="admin__placeholder">قريباً</div>
+        }
+      }
+    </main>
+  </div>
+</div>

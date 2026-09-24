@@ -4,14 +4,7 @@ import { PatientRequestsPage } from '../../components/patient-requests-page/pati
 import { PatientAppointmentsPage } from '../../components/patient-appointments-page/patient-appointments-page';
 import { ClinicSchedulePage } from '../../components/clinic-schedule-page/clinic-schedule-page';
 import { AppointmentsManagementPage } from '../../components/appointments-management-page/appointments-management-page';
-import { FrontdeskNavItem, FrontdeskViewId } from '../../models/frontdesk-nav.model';
-
-const NAV_ITEMS: readonly FrontdeskNavItem[] = [
-  { id: 'registration-requests', label: 'طلبات التسجيل' },
-  { id: 'appointments', label: 'المواعيد' },
-  { id: 'clinic-schedules', label: 'جداول العيادات' },
-  { id: 'clinics', label: 'العيادات' },
-];
+import { FRONTDESK_NAV_ITEMS, FrontdeskViewId } from '../../models/frontdesk-nav.model';
 
 @Component({
   imports: [
@@ -28,7 +21,7 @@ const NAV_ITEMS: readonly FrontdeskNavItem[] = [
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FrontdeskShell {
-  readonly navItems = NAV_ITEMS;
+  readonly navItems = FRONTDESK_NAV_ITEMS;
 
   private readonly activeViewSignal = signal<FrontdeskViewId>('registration-requests');
   readonly activeView = this.activeViewSignal.asReadonly();

@@ -1,0 +1,67 @@
+<div class="accounts" dir="rtl">
+  <div class="accounts__toolbar">
+    <div class="accounts__heading">
+      <h2 class="accounts__title">حسابات موظفي الاستقبال</h2>
+      <p class="accounts__subtitle">الصلاحيات تُمنح لكل حساب على حدة ومحصورة بمستشفى الموظف</p>
+    </div>
+
+    <button type="button" class="btn btn--accent" (click)="onAddAccount()">حساب جديد</button>
+  </div>
+
+  <div class="table-wrapper">
+    <table class="accounts-table">
+      <thead>
+        <tr>
+          <th>الموظف</th>
+          <th>المستشفى</th>
+          <th>البريد</th>
+          <th>الصلاحيات</th>
+          <th>آخر دخول</th>
+          <th>الحالة</th>
+          <th>الإجراء</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (row of rows(); track row.id) {
+          <tr>
+            <td><span class="skeleton skeleton--text"></span></td>
+            <td><span class="skeleton skeleton--text skeleton--short"></span></td>
+            <td><span class="skeleton skeleton--text skeleton--short"></span></td>
+            <td>
+              <div class="chips">
+                @for (permission of row.permissions; track permission) {
+                  <span class="chip">{{ permissionLabels[permission] }}</span>
+                }
+              </div>
+            </td>
+            <td><span class="skeleton skeleton--text skeleton--short"></span></td>
+            <td>
+              @if (row.status === 'active') {
+                <span class="status-text">{{ statusLabels[row.status] }}</span>
+              } @else {
+                <span class="status-badge">{{ statusLabels[row.status] }}</span>
+              }
+            </td>
+            <td>
+              <div class="actions">
+                @if (row.status === 'active') {
+                  <button type="button" class="btn btn--outline btn--sm" (click)="onEdit(row)">
+                    تعديل
+                  </button>
+                  <button type="button" class="btn btn--outline btn--sm" (click)="toggleStatus(row)">
+                    تعطيل
+                  </button>
+                } @else {
+                  <button type="button" class="btn btn--outline btn--sm" (click)="toggleStatus(row)">
+                    تفعيل
+                  </button>
+                }
+              </div>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

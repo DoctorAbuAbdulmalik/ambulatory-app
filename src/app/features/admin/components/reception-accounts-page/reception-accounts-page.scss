@@ -1,0 +1,156 @@
+$color-border: #e7e2d8;
+$color-border-light: #efe9dd;
+$color-text-primary: #5e5a55;
+$color-text-secondary: #262625;
+$color-placeholder-bg: #ece5d6;
+$color-accent-bg: #f4efdf;
+$color-accent-border: #d9cc9e;
+$color-hover-bg: #eee7d5;
+$color-hover-border: #d1c6a9;
+
+:host {
+  display: block;
+  font-family: 'Cairo', Tahoma, Arial, sans-serif;
+  color: $color-text-primary;
+}
+
+.accounts__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.accounts__heading {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.accounts__title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: #3a3733;
+}
+
+.accounts__subtitle {
+  margin: 0;
+  font-size: 12px;
+  color: $color-text-primary;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  border: 1px solid $color-border-light;
+  border-radius: 10px;
+}
+
+.accounts-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 14px 16px;
+    text-align: right;
+    white-space: nowrap;
+    font-size: 14px;
+  }
+
+  thead th {
+    font-weight: 700;
+    color: $color-text-secondary;
+    border-bottom: 1px solid $color-border-light;
+  }
+
+  tbody tr:not(:last-child) td {
+    border-bottom: 1px solid $color-border-light;
+  }
+}
+
+.skeleton {
+  display: inline-block;
+
+  &--text {
+    width: 90px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: $color-placeholder-bg;
+  }
+
+  &--short {
+    width: 60px;
+  }
+}
+
+.chips,
+.actions {
+  display: flex;
+  gap: 6px;
+}
+
+.chip {
+  display: inline-flex;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid $color-border;
+  background-color: #fff;
+  color: $color-text-secondary;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.status-text {
+  font-size: 13px;
+  color: $color-text-primary;
+}
+
+.status-badge {
+  display: inline-flex;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid $color-accent-border;
+  background-color: $color-accent-bg;
+  color: #3a3733;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.btn {
+  padding: 10px 18px;
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+
+  &--outline {
+    background-color: #fff;
+    color: $color-text-primary;
+    border: 1px solid $color-border;
+
+    &:hover {
+      background-color: $color-hover-bg;
+      border-color: $color-hover-border;
+    }
+  }
+
+  &--accent {
+    background-color: $color-accent-bg;
+    color: $color-text-primary;
+    border: 1px solid $color-accent-border;
+
+    &:hover {
+      background-color: $color-hover-bg;
+      border-color: $color-hover-border;
+    }
+  }
+
+  &--sm {
+    padding: 6px 14px;
+    border-radius: 999px;
+  }
+}

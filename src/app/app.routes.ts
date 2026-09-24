@@ -4,9 +4,7 @@ export const routes: Routes = [
   {
     path: '',
     loadComponent: () =>
-      import('./features/public/pages/landing-page/landing-page').then(
-        (m) => m.LandingPage
-      ),
+      import('./features/public/pages/landing-page/landing-page').then((m) => m.LandingPage),
     pathMatch: 'full',
   },
   {
@@ -19,7 +17,12 @@ export const routes: Routes = [
   },
   {
     path: 'frontdesk',
-    loadChildren: () => import('./features/front-desk/front-desk.routes').then((m) => m.FRONTDESK_ROUTES)
+    loadChildren: () =>
+      import('./features/front-desk/front-desk.routes').then((m) => m.FRONTDESK_ROUTES),
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./features/admin/admin.routes').then((m) => m.ADMIN_ROUTES),
   },
   {
     path: '**',
