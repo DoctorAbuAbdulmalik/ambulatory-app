@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { roleGuard } from './shared/auth/role.guard';
 
 export const routes: Routes = [
   {
@@ -13,15 +14,18 @@ export const routes: Routes = [
   },
   {
     path: 'patient',
+    canActivate: [roleGuard('PATIENT')],
     loadChildren: () => import('./features/patient/patient.routes').then((m) => m.PATIENT_ROUTES),
   },
   {
     path: 'frontdesk',
+    canActivate: [roleGuard('EDITOR', 'ADMIN')],
     loadChildren: () =>
       import('./features/front-desk/front-desk.routes').then((m) => m.FRONTDESK_ROUTES),
   },
   {
     path: 'admin',
+    canActivate: [roleGuard('ADMIN')],
     loadChildren: () => import('./features/admin/admin.routes').then((m) => m.ADMIN_ROUTES),
   },
   {

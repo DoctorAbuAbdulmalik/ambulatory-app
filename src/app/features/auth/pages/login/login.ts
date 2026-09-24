@@ -5,6 +5,8 @@ import {
   fieldErrorMessage as getFieldErrorMessage,
   isFieldInvalid as checkFieldInvalid,
 } from '../../../../shared/forms/field-helpers';
+import { AuthService } from '../../../../shared/auth/auth.service';
+import { ROLE_HOME_ROUTES } from '../../../../shared/auth/user-role.model';
 
 interface LoginModel {
   nationalId: string;
@@ -24,6 +26,7 @@ const NATIONAL_ID_PATTERN = /^[0-9]{11}$/;
 })
 export class Login {
   private readonly router = inject(Router);
+  private readonly auth = inject(AuthService);
 
   readonly isPasswordVisible = signal(false);
   readonly isSubmitting = signal(false);
@@ -62,10 +65,13 @@ export class Login {
 
     this.isSubmitting.set(true);
 
-    const { nationalId, password, remember } = this.model();
+    // TODO: send nationalId / password / remember to the backend instead of the mock login
+    const { password } = this.model();
+    const role = this.auth.login(password);
 
     setTimeout(() => {
       this.isSubmitting.set(false);
+      this.router.navigateByUrl(ROLE_HOME_ROUTES[role]);
     }, 800);
   }
 
@@ -82,10 +88,5 @@ export class Login {
 
   onRegisterClick(): void {
     this.router.navigate(['/auth/register']);
-  }
-
-  onGoToAccount(): void {
-    // navigate to account
-    this.router.navigate(['/patient']);
   }
 }

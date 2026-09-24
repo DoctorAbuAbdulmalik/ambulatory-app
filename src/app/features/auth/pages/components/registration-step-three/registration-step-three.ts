@@ -3,6 +3,7 @@ import { FieldTree, FormField } from '@angular/forms/signals';
 import { Router } from '@angular/router';
 import { fieldErrorMessage, isFieldInvalid } from '../../../../../shared/forms/field-helpers';
 import { RegistrationStepThreeModel } from '../../../models/registration.models';
+import { AuthService } from '../../../../../shared/auth/auth.service';
 
 @Component({
   imports: [FormField],
@@ -17,6 +18,7 @@ export class RegistrationStepThree {
   readonly next = output<void>();
 
   private router = inject(Router);
+  private auth = inject(AuthService);
 
   hasLoginError = true;
   showPassword = false;
@@ -44,7 +46,8 @@ export class RegistrationStepThree {
   }
 
   onGoToAccount(): void {
-    // navigate to account
+    // TODO: log in with the real account data once the backend is available
+    this.auth.loginAs('PATIENT');
     this.router.navigate(['/patient']);
   }
 }
