@@ -1,0 +1,351 @@
+$color-border: #e7e2d8;
+$color-border-light: #efe9dd;
+$color-text-primary: #5e5a55;
+$color-text-secondary: #262625;
+$color-placeholder-bg: #ece5d6;
+$color-accent-bg: #f4efdf;
+$color-accent-border: #d9cc9e;
+$color-hover-bg: #eee7d5;
+$color-hover-border: #d1c6a9;
+$color-muted-bg: #f3f3f2;
+
+:host {
+  display: block;
+  font-family: 'Cairo', Tahoma, Arial, sans-serif;
+  color: $color-text-primary;
+}
+
+.alerts__heading {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.alerts__title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: #3a3733;
+}
+
+.alerts__subtitle {
+  margin: 0;
+  font-size: 12px;
+  color: $color-text-primary;
+}
+
+.alerts__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  align-items: start;
+  gap: 24px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+}
+
+.square {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border: 1px solid $color-border;
+  background-color: #fff;
+}
+
+// ---------- Form card ----------
+
+.form-card {
+  border: 1px solid $color-border;
+  border-radius: 6px;
+  overflow: hidden;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background-color: $color-muted-bg;
+    border-bottom: 1px solid $color-border;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: #3a3733;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 12px 16px;
+    background-color: $color-muted-bg;
+    border-top: 1px solid $color-border;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__note {
+    font-size: 11px;
+    color: $color-text-primary;
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+
+  &__label {
+    font-size: 12px;
+    color: $color-text-primary;
+  }
+
+  &__control {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 9px 12px;
+    border: 1px solid $color-border;
+    border-radius: 4px;
+    background-color: #fff;
+    font-family: inherit;
+    font-size: 13px;
+    color: $color-text-secondary;
+    outline: none;
+
+    &:focus {
+      border-color: $color-accent-border;
+    }
+
+    &--textarea {
+      resize: vertical;
+      line-height: 1.6;
+    }
+  }
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+// ---------- Preview ----------
+
+.preview {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 14px;
+  border: 1px solid $color-accent-border;
+  border-radius: 4px;
+  background-color: $color-accent-bg;
+
+  &--critical {
+    border-width: 2px;
+  }
+
+  &--info {
+    background-color: #fff;
+  }
+
+  &__head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__title {
+    font-size: 14px;
+    color: #3a3733;
+  }
+
+  &__text {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.6;
+    color: $color-text-primary;
+    overflow-wrap: anywhere;
+  }
+}
+
+.skeleton {
+  display: block;
+
+  &--line {
+    width: 100%;
+    height: 8px;
+    border-radius: 4px;
+    background-color: $color-placeholder-bg;
+  }
+
+  &--short {
+    width: 60%;
+  }
+}
+
+// ---------- Registered alerts ----------
+
+.list-card {
+  padding: 16px;
+  border: 1px solid $color-border;
+  border-radius: 6px;
+
+  &__title {
+    margin: 0 0 12px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #3a3733;
+  }
+}
+
+.alert-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  &__empty {
+    padding: 12px 0;
+    font-size: 13px;
+    text-align: center;
+  }
+}
+
+.alert-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 0;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid $color-border;
+  }
+
+  &--editing .alert-item__name {
+    text-decoration: underline;
+    text-decoration-color: $color-accent-border;
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  &__name {
+    min-width: 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: $color-text-secondary;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__meta {
+    font-size: 12px;
+    color: $color-text-primary;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 6px;
+  }
+}
+
+.status-badge {
+  flex-shrink: 0;
+  display: inline-flex;
+  padding: 2px 12px;
+  border-radius: 999px;
+  border: 1px solid $color-border;
+  background-color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  color: $color-text-secondary;
+
+  &--active {
+    border-color: $color-accent-border;
+    background-color: $color-accent-bg;
+    color: #3a3733;
+  }
+
+  &--draft {
+    border-style: dashed;
+  }
+}
+
+// ---------- Buttons ----------
+
+.btn {
+  padding: 10px 18px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+
+  &--outline {
+    background-color: #fff;
+    color: $color-text-primary;
+    border: 1px solid $color-border;
+
+    &:hover:not(:disabled) {
+      background-color: $color-hover-bg;
+      border-color: $color-hover-border;
+    }
+  }
+
+  &--accent {
+    background-color: $color-accent-bg;
+    color: $color-text-primary;
+    border: 1px solid $color-accent-border;
+
+    &:hover:not(:disabled) {
+      background-color: $color-hover-bg;
+      border-color: $color-hover-border;
+    }
+  }
+
+  &--link {
+    padding: 4px 6px;
+    border: none;
+    background: none;
+    font-size: 12px;
+    font-weight: 600;
+    color: $color-text-primary;
+    text-decoration: underline;
+  }
+
+  &--sm {
+    padding: 5px 14px;
+    font-size: 12px;
+    border-radius: 999px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+}

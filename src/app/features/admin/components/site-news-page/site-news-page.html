@@ -1,0 +1,57 @@
+<div class="news" dir="rtl">
+  <div class="news__toolbar">
+    <div class="news__heading">
+      <h2 class="news__title">أخبار الموقع العام</h2>
+      <p class="news__subtitle">الترتيب يحدد تسلسل الأخبار في الصفحة الرئيسية — الرقم ١ أولاً</p>
+    </div>
+
+    <button type="button" class="btn btn--accent" (click)="onAddNews()">خبر جديد</button>
+  </div>
+
+  <div class="table-wrapper">
+    <table class="news-table">
+      <thead>
+        <tr>
+          <th>الترتيب</th>
+          <th>العنوان</th>
+          <th>تاريخ النشر</th>
+          <th>الحالة</th>
+          <th>الإجراء</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (row of rows(); track row.id; let i = $index) {
+          <tr>
+            <td class="news-table__order">{{ i + 1 }}</td>
+            <td><span class="skeleton skeleton--text"></span></td>
+            <td><span class="skeleton skeleton--text"></span></td>
+            <td>
+              @if (row.status === 'published') {
+                <span class="status-text">{{ statusLabels[row.status] }}</span>
+              } @else {
+                <span class="status-badge">{{ statusLabels[row.status] }}</span>
+              }
+            </td>
+            <td>
+              <div class="actions">
+                <button type="button" class="btn btn--outline btn--sm" (click)="onEdit(row)">
+                  تعديل
+                </button>
+                <button
+                  type="button"
+                  class="btn btn--outline btn--sm"
+                  [disabled]="i === 0"
+                  title="رفع الخبر مرتبة واحدة"
+                  (click)="moveUp(i)"
+                >
+                  الترتيب
+                </button>
+              </div>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

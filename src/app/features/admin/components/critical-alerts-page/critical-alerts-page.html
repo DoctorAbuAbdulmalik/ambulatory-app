@@ -1,0 +1,155 @@
+<div class="alerts" dir="rtl">
+  <div class="alerts__heading">
+    <h2 class="alerts__title">التنبيهات الحرجة</h2>
+    <p class="alerts__subtitle">
+      التنبيه الحرج يظهر أعلى الموقع العام حتى تاريخ الانتهاء أو الإيقاف اليدوي
+    </p>
+  </div>
+
+  <div class="alerts__layout">
+    <section class="form-card">
+      <header class="form-card__header">
+        <span class="square" aria-hidden="true"></span>
+        <h3 class="form-card__title">{{ editingId() ? 'تعديل التنبيه' : 'تنبيه جديد' }}</h3>
+      </header>
+
+      <div class="form-card__body">
+        <label class="field">
+          <span class="field__label">عنوان التنبيه</span>
+          <input
+            type="text"
+            class="field__control"
+            [value]="form().title"
+            (input)="updateField('title', $any($event.target).value)"
+          />
+        </label>
+
+        <label class="field">
+          <span class="field__label">نص التنبيه — سطران كحد أقصى</span>
+          <textarea
+            class="field__control field__control--textarea"
+            rows="3"
+            maxlength="200"
+            [value]="form().text"
+            (input)="updateField('text', $any($event.target).value)"
+          ></textarea>
+        </label>
+
+        <div class="field-row">
+          <label class="field">
+            <span class="field__label">مستوى الخطورة</span>
+            <select
+              class="field__control"
+              [value]="form().severity"
+              (change)="onSeverityChange($any($event.target).value)"
+            >
+              @for (option of severityOptions; track option.value) {
+                <option [value]="option.value" [selected]="option.value === form().severity">
+                  {{ option.label }}
+                </option>
+              }
+            </select>
+          </label>
+
+          <label class="field">
+            <span class="field__label">يبدأ</span>
+            <input
+              type="date"
+              class="field__control"
+              [value]="form().startDate"
+              (input)="updateField('startDate', $any($event.target).value)"
+            />
+          </label>
+
+          <label class="field">
+            <span class="field__label">ينتهي</span>
+            <input
+              type="date"
+              class="field__control"
+              [min]="form().startDate"
+              [value]="form().endDate"
+              (input)="updateField('endDate', $any($event.target).value)"
+            />
+          </label>
+        </div>
+
+        <div class="field">
+          <span class="field__label">المعاينة كما تظهر في الموقع العام</span>
+          <div class="preview preview--{{ form().severity }}">
+            <div class="preview__head">
+              <span class="square" aria-hidden="true"></span>
+              <strong class="preview__title">{{ form().title || 'عنوان التنبيه' }}</strong>
+            </div>
+            @if (form().text) {
+              <p class="preview__text">{{ form().text }}</p>
+            } @else {
+              <span class="skeleton skeleton--line"></span>
+              <span class="skeleton skeleton--line skeleton--short"></span>
+            }
+          </div>
+        </div>
+      </div>
+
+      <footer class="form-card__footer">
+        <div class="form-card__actions">
+          <button
+            type="button"
+            class="btn btn--accent btn--sm"
+            [disabled]="!isFormValid()"
+            (click)="publish()"
+          >
+            نشر التنبيه
+          </button>
+          <button
+            type="button"
+            class="btn btn--outline btn--sm"
+            [disabled]="!isFormValid()"
+            (click)="saveDraft()"
+          >
+            حفظ كمسودة
+          </button>
+          @if (editingId()) {
+            <button type="button" class="btn btn--link" (click)="cancelEdit()">إلغاء</button>
+          }
+        </div>
+        <span class="form-card__note">يُسجّل النشر مع التاريخ ومعرّف المستخدم</span>
+      </footer>
+    </section>
+
+    <aside class="list-card">
+      <h3 class="list-card__title">التنبيهات المسجّلة</h3>
+
+      <ul class="alert-list">
+        @for (alert of alerts(); track alert.id) {
+          <li class="alert-item" [class.alert-item--editing]="alert.id === editingId()">
+            <div class="alert-item__row">
+              <span class="alert-item__name">{{ alert.title }}</span>
+              <span class="status-badge status-badge--{{ alert.status }}">
+                {{ statusLabels[alert.status] }}
+              </span>
+            </div>
+
+            <div class="alert-item__meta">
+              {{ severityLabels[alert.severity] }} · {{ formatPeriod(alert.startDate, alert.endDate) }}
+            </div>
+
+            @if (alert.status !== 'ended') {
+              <div class="alert-item__actions">
+                <button type="button" class="btn btn--outline btn--sm" (click)="edit(alert)">
+                  تعديل
+                </button>
+                @if (alert.status === 'active') {
+                  <button type="button" class="btn btn--outline btn--sm" (click)="stop(alert)">
+                    إيقاف
+                  </button>
+                }
+              </div>
+            }
+          </li>
+        } @empty {
+          <li class="alert-list__empty">لا توجد تنبيهات</li>
+        }
+      </ul>
+    </aside>
+  </div>
+</div>

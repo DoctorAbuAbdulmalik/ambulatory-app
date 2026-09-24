@@ -9,10 +9,14 @@ import { ClinicSchedulePage } from '../../../front-desk/components/clinic-schedu
 import { AppointmentsManagementPage } from '../../../front-desk/components/appointments-management-page/appointments-management-page';
 import { HospitalManagementPage } from '../../components/hospital-management-page/hospital-management-page';
 import { ReceptionAccountsPage } from '../../components/reception-accounts-page/reception-accounts-page';
+import { SiteNewsPage } from '../../components/site-news-page/site-news-page';
+import { CriticalAlertsPage } from '../../components/critical-alerts-page/critical-alerts-page';
 import { ADMIN_TOOL_NAV_ITEMS, AdminNavItem, AdminViewId } from '../../models/admin-nav.model';
 
 const ADMIN_HEADER_SECTIONS: Partial<Record<AdminViewId, string>> = {
   'reception-accounts': 'حسابات موظفي الاستقبال',
+  'site-news': 'أخبار الموقع العام',
+  'critical-alerts': 'التنبيهات الحرجة',
 };
 
 @Component({
@@ -23,6 +27,8 @@ const ADMIN_HEADER_SECTIONS: Partial<Record<AdminViewId, string>> = {
     AppointmentsManagementPage,
     HospitalManagementPage,
     ReceptionAccountsPage,
+    SiteNewsPage,
+    CriticalAlertsPage,
   ],
   selector: 'app-admin-shell',
   styleUrl: './admin-shell.scss',
